@@ -7,12 +7,17 @@
    <h1 class="text-5xl font-bold text-center mt-24 mb-8">Nos différentes activités</h1>
 </div>
 
+<!-- Conteneur des cartes -->
 <div class="container flex flex-wrap justify-center gap-8 mt-8">
     {% for activity in activities %}
-    {% include "components/card.html.twig" with {
-    activity:activity} only%}
-    
+        {% include "components/card.html.twig" with { activity: activity } only %}
     {% endfor %}
 </div>
+
+<!-- Pagination bien placée sous les cartes -->
+<div class="navigation flex justify-center w-full mt-8 mb-8">
+    {{ knp_pagination_render(activities) }}
+</div>
+
 
 {% endblock %}

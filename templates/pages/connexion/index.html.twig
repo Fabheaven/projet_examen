@@ -1,0 +1,53 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+    Connexion
+{% endblock %}
+
+{% block body %}
+<div class="ip-connexion">
+  <img src="img/slides/img-1.jpg" alt="slides-picture">
+</div>
+
+<div class="ip-conteneur">
+    <span class="ip-elipse"></span>
+    
+    <div class="ip-content-connexion">
+        <h1 class="ip-titre-connexion">Connectez-vous</h1>    
+
+        {{ form_start(form, {'attr': {'class': 'ip-form'}}) }}
+
+        <div class="ip-champ">
+            <label for="email">Veuillez saisir votre e-mail</label>
+            {{ form_widget(form.email, {'attr': {'class': 'ip-input'}}) }}
+            {{ form_errors(form.email, {'attr': {'class': 'ip-error'}}) }}
+        </div>
+    
+        <div class="ip-champ-pwd">
+            <label for="password.first" class="form-label">Veuillez saisir un mot de passe</label>
+            {{ form_widget(form.password, {'attr': {'class': 'form-control'}}) }}
+            {{ form_errors(form.password) }}
+        </div>
+
+        <div class="ip-submit-connexion">
+            {{ form_widget(form.submit, {'attr': {'class': 'ip-button-connexion'}}) }}
+        </div>
+
+        <div class="ip-button-conteneur-connexion">
+            <div class="ip-button-up-connexion">
+                <ul class="ip-list-connexion">
+                    <li>Vous n'avez pas encore de compte ?</li>
+                    <li><a href="{{ path('app_inscription') }}">Inscrivez-vous</a></li>
+                </ul>
+            </div>
+
+            <a href="#" class="ip-button-down-connexion-b">BESOIN D’AIDE</a>
+            <a href="#" class="ip-button-down-connexion-m">Mot de passe oublié?</a>
+
+        </div>
+    
+        {{ form_end(form) }}
+    </div>
+</div>
+
+{% endblock %}

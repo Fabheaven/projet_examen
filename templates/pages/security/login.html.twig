@@ -1,0 +1,54 @@
+
+
+{% block body %}
+<div class="ip-connexion">
+  <img src="">
+</div>
+
+<div class="ip-conteneur">
+    <span class="ip-elipse"></span>
+    
+    <div class="ip-content-connexion">
+        <h1 class="ip-titre-connexion">Connectez-vous</h1>
+
+        {% if error %}
+            <div class="ip-error">
+                {{ error.messageKey | trans(error.messageData, 'security') }}
+            </div>
+        {% endif %}
+
+        <form action="{{ path('security.login') }}" method="post" class="ip-form">
+            <div class="ip-champ">
+                <label for="username">Veuillez saisir votre e-mail</label>
+                <input type="text" id="username" name="_username" value="{{ last_username }}" required class="ip-input">
+            </div>
+    
+            <div class="ip-champ-pwd">
+                <label for="password" class="form-label">Veuillez saisir un mot de passe</label>
+                <input type="password" id="password" name="_password" required class="form-control">
+            </div>
+
+            <div class="ip-submit-connexion">
+                <button type="submit" class="ip-button-connexion">Connexion</button>
+            </div>
+            <dir>
+                <a href="#">OR</a>
+            </dir>
+        </form>
+
+        <div class="ip-button-conteneur-connexion">
+            <div class="ip-button-up-connexion">
+                <ul class="ip-list-connexion">
+                    <li>Vous n'avez pas encore de compte ?</li>
+                    <li><a href="">Inscrivez-vous</a></li>
+                </ul>
+            </div>
+
+            <a href="#" class="ip-button-down-connexion-b">BESOIN D’AIDE</a>
+            <a href="#" class="ip-button-down-connexion-m">Mot de passe oublié?</a>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+

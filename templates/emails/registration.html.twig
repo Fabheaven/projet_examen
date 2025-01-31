@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirmation d'inscription</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+        .container {
+            max-width: 600px;
+            margin: 30px auto;
+            padding: 20px;
+            background: #fff;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        h1 {
+            color: #0056b3;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        p {
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+        a {
+            color: #0056b3;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .note {
+            font-size: 0.9rem;
+            color: #555;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        
+        <h1>Merci pour votre inscription !</h1>
+
+   <p>Nous avons bien enregistré votre demande d'inscription avec l'email suivant : <strong>{{ user.email }}</strong></p>
+
+   <p>Vous avez sélectionné les catégories suivantes :</p>
+   <ul>
+      {% for category in user.categories %}
+         <li>{{ category.name }}</li>
+      {% endfor %}
+   </ul>
+        <p>Pour confirmer votre inscription, cliquez sur le lien ci-dessous :</p>
+        <p style="text-align: center;">
+            <a href="{{ absolute_url(path('app_confirm', {id: user.id, token: validationToken})) }}">
+                Confirmer mon inscription
+            </a>
+        </p>
+        <p class="note">
+            Si vous ne pouvez pas cliquer sur le lien, copiez et collez cette URL dans votre navigateur :
+            <br>
+            <code>{{ absolute_url(path('app_confirm', {id: user.id, token: validationToken})) }}</code>
+        </p>
+        <p>Nous vous remercions de votre confiance et espérons que nos newsletters vous inspireront.</p>
+        <p>Si vous n'êtes pas à l'origine de cette demande, vous pouvez ignorer cet email.</p>
+        <p style="text-align: center; font-weight: bold; margin-top: 20px;">
+            L’équipe de Diosso Tourisme
+        </p>
+    </div>
+</body>
+</html>

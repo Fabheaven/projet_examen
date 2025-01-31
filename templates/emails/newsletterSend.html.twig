@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ newsletter.name }}</title>
+</head>
+<body style="font-family: Arial, sans-serif; background-color: #f4f4f4; margin: 0; padding: 20px; color: #333;">
+   <div style="max-width: 600px; margin: 0 auto; background-color: #ffffff; padding: 20px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+      <!-- Titre de la newsletter -->
+      <h1 style="color: #2c3e50; text-align: center; margin-bottom: 20px;">{{ newsletter.name }}</h1>
+
+      <!-- Contenu principal de la newsletter -->
+      <div style="font-size: 16px; line-height: 1.6; margin-bottom: 20px;">
+          {{ newsletter.content|raw }}
+      </div>
+
+      <!-- Footer -->
+      <p style="font-size: 14px; line-height: 1.6; text-align: center; color: #7f8c8d; margin-top: 30px;">
+          Si vous avez des questions ou des préoccupations, n'hésitez pas à nous contacter.
+      </p>
+      <p style="font-size: 14px; line-height: 1.6; text-align: center; color: #7f8c8d;">Merci,</p>
+      <p style="font-size: 14px; line-height: 1.6; text-align: center; color: #7f8c8d;">L'équipe de Diosso Tourisme</p>
+
+      <!-- Désinscription -->
+      <p style="font-size: 12px; line-height: 1.6; text-align: center; color: #95a5a6; margin-top: 20px;">
+          Si vous ne souhaitez plus recevoir nos newsletters, vous pouvez vous <a href="{{ absolute_url(path('app_unsubscribe', {id: user.id, newsletter:newsletter.id, token: user.validationToken })) }}" style="color: #3498db; text-decoration: none;">désinscrire ici</a>.
+      </p>
+   </div>
+</body>
+</html>

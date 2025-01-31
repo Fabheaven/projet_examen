@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Abonnement à la Newsletter{% endblock %}
+
+{% block body %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <h1 class="text-center mb-4">Abonnez-vous à notre Newsletter</h1>
+            <p class="text-center text-muted mb-5">
+                Restez informé des dernières actualités, conseils et offres exclusives. 
+                Choisissez les thématiques qui vous intéressent et recevez des contenus personnalisés.
+            </p>
+
+            <div class="card shadow-sm border-0">
+                <div class="card-body p-5">
+                    {{ form_start(form) }}
+                        <div class="mb-4">
+                            {{ form_label(form.email, 'Adresse e-mail', {'label_attr': {'class': 'form-label fw-bold'}}) }}
+                            {{ form_widget(form.email, {'attr': {'class': 'form-control', 'placeholder': 'exemple@domaine.com'}}) }}
+                            <div class="text-danger mt-1">
+                                {{ form_errors(form.email) }}
+                            </div>
+                        </div>
+
+                        <div class="mb-4">
+                            <label class="form-label fw-bold">Sélectionnez les catégories qui vous intéressent. :</label>
+                            <div class="form-check-group">
+                                {{ form_widget(form.categories, {'attr': {'class': 'form-check-input'}}) }}
+                            </div>
+                          
+                        </div>
+
+                        <div class="form-check mb-4">
+                            {{ form_widget(form.isRgpd, {'attr': {'class': 'form-check-input'}}) }}
+                            {{ form_label(form.isRgpd, null, {'label_html': true, 'label_attr': {'class': 'form-check-label'}}) }}
+                            <div class="text-danger mt-1">
+                                {{ form_errors(form.isRgpd) }}
+                            </div>
+                        </div>
+
+                        <div class="d-grid mt-4">
+                            {{ form_widget(form.submit, {'attr': {'class': 'btn btn-primary btn-lg'}}) }}
+                        </div>
+                    {{ form_end(form) }}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

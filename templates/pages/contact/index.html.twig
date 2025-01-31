@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Diosso Tourisme - Contact{% endblock %}
+
+{% block body %}
+    <div class="container mt-5">
+        <h1>Contactez-nous</h1>
+
+        {# Affichage des messages flash (succès ou erreur) #}
+        {% for message in app.flashes('success') %}
+            <div class="alert alert-success">{{ message }}</div>
+        {% endfor %}
+
+        {{ form_start(form) }}
+            {{ form_widget(form) }}
+            {{ form_end(form) }}
+    </div>
+{% endblock %}

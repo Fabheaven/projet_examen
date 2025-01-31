@@ -1,0 +1,48 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Liste des newsletters - Gestion{% endblock %}
+
+{% block meta %}
+    <meta name="description" content="Consultez et gérez la liste de vos newsletters. Planifiez leur envoi et suivez leur statut.">
+{% endblock %}
+
+{% block body %}
+    <main>
+        <h1>Liste des newsletters</h1>
+        <table class="table table-striped table-responsive">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Titre</th>
+                    <th>Date</th>
+                    <th>Catégorie</th>
+                    <th>Inscrits</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for newsletter in newsletters %}
+                    <tr class="{{ newsletter.isSent ? 'table-success' : '' }}">
+                        <td>{{ newsletter.id }}</td>
+                        <td>{{ newsletter.name }}</td>
+                        <td>{{ newsletter.createdAt ? newsletter.createdAt|date('d/m/Y') : 'Non spécifiée' }}</td>
+                        <td>{{ newsletter.categories ? newsletter.categories.name : 'Non spécifiée' }}</td>
+                        <td>{{ newsletter.categories.users|length}}</td>
+                        <td>
+                            {% if not newsletter.isSent %}
+                                <a href="{{ path('app_newsletterSend', {id: newsletter.id}) }}" class="btn btn-primary btn-sm">Envoyer</a>
+                            {% else %}
+                                <span class="badge bg-success">Déjà envoyé</span>
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="6" class="text-center">Aucune newsletter disponible.</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </main>
+{% endblock %}

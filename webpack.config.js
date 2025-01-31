@@ -20,8 +20,9 @@ Encore
      * Each entry will result in one JavaScript file (e.g. app.js)
      * and one CSS file (e.g. app.css) if your JavaScript imports CSS.
      */
-    .addEntry('app', './assets/react/index.tsx')
-    .addStyleEntry('style', './assets/styles/styles.scss')
+    .addEntry('app', './assets/js/app.js') // Remplace le fichier TSX par un fichier JS
+    .addStyleEntry('style', './assets/styles/app.css')
+
 
     // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.
     .splitEntryChunks()
@@ -57,16 +58,7 @@ Encore
     // enables Sass/SCSS support
     .enableSassLoader()
 
-    // uncomment if you use TypeScript
-    .enableTypeScriptLoader(function(tsConfig) {
-        // You can use this callback function to adjust ts-loader settings
-        // https://github.com/TypeStrong/ts-loader/blob/master/README.md#loader-options
-        // For example:
-        // tsConfig.silent = false
-    })
-
-    // uncomment if you use React
-    .enableReactPreset()
+    
 
     .enablePostCssLoader()
 

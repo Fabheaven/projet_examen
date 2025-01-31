@@ -1,0 +1,15 @@
+/* app.css */
+
+/* Importation de la base de Tailwind */
+@import 'tailwindcss/base';
+
+/* Importation des composants de Tailwind */
+@import 'tailwindcss/components';
+
+/* Importation des utilitaires de Tailwind */
+@import 'tailwindcss/utilities';
+
+/* Autres styles personnalisés */
+main {
+  background-color: red;
+}

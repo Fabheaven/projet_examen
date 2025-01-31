@@ -16,13 +16,28 @@ class ActivityRepository extends ServiceEntityRepository
         parent::__construct($registry, Activity::class);
     }
 
-    public function findPublished(): array
-    {
-        return $this->createQueryBuilder('ac')
-            ->where('ac.state LIKE :state') // Ici, 'ac' fait référence à l'alias de l'entité Activity
-            ->setParameter('state', '%STATE_PUBLISHED%') // Fixe le paramètre pour l'état
-            ->orderBy('ac.createdAt', 'DESC') // Assure-toi que 'createdAt' existe dans l'entité Activity
-            ->getQuery()
-            ->getResult();
-    }
+//    /**
+//     * @return Activity[] Returns an array of Activity objects
+//     */
+//    public function findByExampleField($value): array
+//    {
+//        return $this->createQueryBuilder('a')
+//            ->andWhere('a.exampleField = :val')
+//            ->setParameter('val', $value)
+//            ->orderBy('a.id', 'ASC')
+//            ->setMaxResults(10)
+//            ->getQuery()
+//            ->getResult()
+//        ;
+//    }
+
+//    public function findOneBySomeField($value): ?Activity
+//    {
+//        return $this->createQueryBuilder('a')
+//            ->andWhere('a.exampleField = :val')
+//            ->setParameter('val', $value)
+//            ->getQuery()
+//            ->getOneOrNullResult()
+//        ;
+//    }
 }

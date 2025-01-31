@@ -9,7 +9,3 @@
 /* Importation des utilitaires de Tailwind */
 @import 'tailwindcss/utilities';
 
-/* Autres styles personnalisés */
-main {
-  background-color: red;
-}

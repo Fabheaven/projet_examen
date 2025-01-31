@@ -2,13 +2,12 @@
 
 namespace App\Repository\Articles;
 
-use App\Entity\Articles\Cart;
 use App\Entity\Articles\CartItem;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @extends ServiceEntityRepository<Cart>
+ * @extends ServiceEntityRepository<CartItem>
  */
 class CartItemRepository extends ServiceEntityRepository
 {
@@ -16,4 +15,29 @@ class CartItemRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, CartItem::class);
     }
+
+//    /**
+//     * @return CartItem[] Returns an array of CartItem objects
+//     */
+//    public function findByExampleField($value): array
+//    {
+//        return $this->createQueryBuilder('c')
+//            ->andWhere('c.exampleField = :val')
+//            ->setParameter('val', $value)
+//            ->orderBy('c.id', 'ASC')
+//            ->setMaxResults(10)
+//            ->getQuery()
+//            ->getResult()
+//        ;
+//    }
+
+//    public function findOneBySomeField($value): ?CartItem
+//    {
+//        return $this->createQueryBuilder('c')
+//            ->andWhere('c.exampleField = :val')
+//            ->setParameter('val', $value)
+//            ->getQuery()
+//            ->getOneOrNullResult()
+//        ;
+//    }
 }

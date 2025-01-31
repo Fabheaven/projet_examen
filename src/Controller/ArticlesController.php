@@ -16,7 +16,7 @@ class ArticlesController extends AbstractController
     #[Route('/articles/circuits', name: 'app_articles_circuits')]
     public function circuits(CircuitRepository $circuitRepository): Response
     {
-        $circuits = $circuitRepository->findPublished();
+        $circuits = $circuitRepository->findPublished(true);
 
         return $this->render('pages/articles/circuits.html.twig', [
             'circuits' => $circuits,
@@ -26,7 +26,7 @@ class ArticlesController extends AbstractController
     #[Route('/articles/activities', name: 'app_articles_activities')]
     public function activities(ActivityRepository $activitiesRepository): Response
     {
-        $activities = $activitiesRepository->findPublished();
+        $activities = $activitiesRepository->findAll();
 
         return $this->render('pages/articles/activities.html.twig', [
             'activities' => $activities,

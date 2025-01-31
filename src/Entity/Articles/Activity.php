@@ -171,16 +171,12 @@ class Activity
     }
 
     
-    public function setState(string $state): self
+    public function setState($state)
     {
-        if (!in_array($state, self::STATES)) {
-            throw new \InvalidArgumentException('Invalid state');
-        }
         $this->state = $state;
 
         return $this;
     }
-
 
     
     public function getMediafile()

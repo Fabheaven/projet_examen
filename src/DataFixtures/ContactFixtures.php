@@ -1,6 +1,6 @@
 <?php
 
-namespace Contact\DataFixtures;
+namespace App\DataFixtures;
 
 use App\Entity\Contact;
 use Doctrine\Bundle\FixturesBundle\Fixture;
@@ -13,22 +13,25 @@ class ContactFixtures extends Fixture
     {
         $faker = Factory::create();
 
-        // Contact
+        // Génération de 5 contacts
         for ($i = 0; $i < 5; $i++) {
             $contact = new Contact();
-            $contact->setFirstName($faker->firstName())  // Utilisation correcte de la méthode setFirstName
-                    ->setLastName($faker->lastName())    // Utilisation correcte de la méthode setLastName
-                    ->setEmail($faker->email())         // Utilisation correcte de la méthode setEmail
+            $contact->setFirstName($faker->firstName())
+                    ->setLastName($faker->lastName())
+                    ->setEmail($faker->unique()->safeEmail()) // Assure l'unicité
                     ->setSubject('Demande n°' . ($i + 1))
-                    ->setMessage($faker->text());       // Utilisation correcte de la méthode setMessage
+                    ->setMessage($faker->text());
 
-            // Persister l'objet Contact dans Doctrine
+            // Vérifier si l'entité a une date de création
+            if (method_exists($contact, 'setCreatedAt')) {
+                $contact->setCreatedAt(new \DateTimeImmutable());
+            }
+
+            // Persister l'objet Contact
             $manager->persist($contact);
         }
 
-        // Sauvegarde en base de données
+        // Enregistrement en base de données
         $manager->flush();
     }
 }
-
- 

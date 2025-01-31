@@ -1,40 +1,47 @@
-{# tailwindcss Sliding pagination control implementation #}
 {% if pageCount > 1 %}
-    <div class="inline-block">
-        <div class="flex items-baseline flex-row border border-gray-400 rounded-sm w-auto">
+    <nav class="isolate inline-flex -space-x-px rounded-md shadow-xs" aria-label="Pagination">
         {% if first is defined and current != first %}
-            <span class="bg-white text-blue-600 px-3 py-2 text-lg border-r border-gray-400 font-bold">
-                <a href="{{ path(route, knp_pagination_query(query, first)) }}">&lt;&lt;</a>
-            </span>
+            <a href="{{ path(route, knp_pagination_query(query, first)) }}" class="relative inline-flex items-center rounded-l-md px-2 py-2 text-gray-400 ring-1 ring-gray-300 ring-inset hover:bg-gray-50 focus:z-20 focus:outline-offset-0">
+                <span class="sr-only">First</span>
+                <svg class="size-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                    <path fill-rule="evenodd" d="M11.78 5.22a.75.75 0 0 1 0 1.06L8.06 10l3.72 3.72a.75.75 0 1 1-1.06 1.06l-4.25-4.25a.75.75 0 0 1 0-1.06l4.25-4.25a.75.75 0 0 1 1.06 0Z" clip-rule="evenodd" />
+                </svg>
+            </a>
         {% endif %}
-        
+
         {% if previous is defined %}
-            <span class="bg-white text-blue-600 px-3 text-lg py-2 border-r border-gray-400">
-                <a rel="prev" href="{{ path(route, knp_pagination_query(query, previous)) }}">&lt;</a>
-            </span>
+            <a href="{{ path(route, knp_pagination_query(query, previous)) }}" class="relative inline-flex items-center px-2 py-2 text-gray-400 ring-1 ring-gray-300 ring-inset hover:bg-gray-50 focus:z-20 focus:outline-offset-0">
+                <span class="sr-only">Previous</span>
+                <svg class="size-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                    <path fill-rule="evenodd" d="M11.78 5.22a.75.75 0 0 1 0 1.06L8.06 10l3.72 3.72a.75.75 0 1 1-1.06 1.06l-4.25-4.25a.75.75 0 0 1 0-1.06l4.25-4.25a.75.75 0 0 1 1.06 0Z" clip-rule="evenodd" />
+                </svg>
+            </a>
         {% endif %}
 
         {% for page in pagesInRange %}
             {% if page != current %}
-                <span class="bg-white text-blue-600 px-3 py-2 text-lg border-r  border-gray-400">
-                    <a href="{{ path(route, knp_pagination_query(query, page)) }}">{{ page }}</a>
-                </span>
+                <a href="{{ path(route, knp_pagination_query(query, page)) }}" class="relative inline-flex items-center px-4 py-2 text-sm font-semibold text-gray-900 ring-1 ring-gray-300 ring-inset hover:bg-gray-50 focus:z-20 focus:outline-offset-0">{{ page }}</a>
             {% else %}
-                <span class="bg-blue-600 text-white px-3 py-2 text-lg font-bold">{{ page }}</span>
+                <span class="relative inline-flex items-center px-4 py-2 text-sm font-semibold text-white bg-indigo-600 ring-1 ring-gray-300 ring-inset focus:z-20 focus:outline-offset-0">{{ page }}</span>
             {% endif %}
         {% endfor %}
 
         {% if next is defined %}
-            <span class="bg-white text-blue-600 px-3 py-2 text-lg border-r border-gray-400">
-                <a rel="next" href="{{ path(route, knp_pagination_query(query, next)) }}">&gt;</a>
-            </span>
+            <a href="{{ path(route, knp_pagination_query(query, next)) }}" class="relative inline-flex items-center px-2 py-2 text-gray-400 ring-1 ring-gray-300 ring-inset hover:bg-gray-50 focus:z-20 focus:outline-offset-0">
+                <span class="sr-only">Next</span>
+                <svg class="size-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                    <path fill-rule="evenodd" d="M8.22 5.22a.75.75 0 0 1 1.06 0l4.25 4.25a.75.75 0 0 1 0 1.06l-4.25 4.25a.75.75 0 0 1-1.06-1.06L11.94 10 8.22 6.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" />
+                </svg>
+            </a>
         {% endif %}
 
         {% if last is defined and current != last %}
-            <span class="bg-white text-blue-600 px-3 py-2 text-lg border-gray-400 font-bold">
-                <a href="{{ path(route, knp_pagination_query(query, last)) }}">&gt;&gt;</a>
-            </span>
+            <a href="{{ path(route, knp_pagination_query(query, last)) }}" class="relative inline-flex items-center px-2 py-2 text-gray-400 ring-1 ring-gray-300 ring-inset hover:bg-gray-50 focus:z-20 focus:outline-offset-0">
+                <span class="sr-only">Last</span>
+                <svg class="size-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                    <path fill-rule="evenodd" d="M8.22 5.22a.75.75 0 0 1 1.06 0l4.25 4.25a.75.75 0 0 1 0 1.06l-4.25 4.25a.75.75 0 0 1-1.06-1.06L11.94 10 8.22 6.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" />
+                </svg>
+            </a>
         {% endif %}
-        </div>
-    </div>
+    </nav>
 {% endif %}

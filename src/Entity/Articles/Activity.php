@@ -37,7 +37,7 @@ class Activity
     private string $state;
 
     #[ORM\OneToOne(inversedBy: 'activity', targetEntity: MediaFile::class, cascade: ['persist', 'remove'])]
-    private ?MediaFile $mediafile;
+    private ?MediaFile $mediafile = null;
 
     #[ORM\ManyToMany(targetEntity: User::class, inversedBy: 'activities')]
     private Collection $users; // Relation inverse N,N avec User

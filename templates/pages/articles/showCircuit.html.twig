@@ -1,0 +1,32 @@
+{% extends "base.html.twig" %}
+
+{% block name %}
+    {{ circuit.name}}
+{% endblock %}
+
+{% block body %}
+    <div class="container mx-auto">
+        <h1>{{ circuit.name }}</h1>
+<div class="sm:flex sm:justify-center">
+  <div
+    class="flex flex-col rounded-lg bg-white text-surface shadow-secondary-1 dark:bg-surface-dark dark:text-white sm:shrink-0 sm:grow sm:basis-0 sm:rounded-e-none">
+    <a href="{{path('activity.showActivity')}}">
+      {{% if activity.mediafile %}}
+      <img
+        class="rounded-t-lg sm:rounded-tr-none"
+        src="{{ vich_uploader_asset(activity.mediafile, 'mediaFile') }}"
+        alt="{{ activity.mediafile.imageName }}" />
+        {% endif %}
+    </a>
+    <div class="p-6">
+      <h5 class="mb-2 text-xl font-medium leading-tight">{{activity.name}}</h5>
+      <p class="mb-4 text-base">{{activity.content | raw}}</p>
+      <p class="mb-4 text-base text-surface/75 dark:text-neutral-300">
+        <small>Dernière mise à jour{{activity.updatedAt('m/yy')}}</small>
+      </p>
+    </div>
+</div>
+    </div>
+{% endblock %}
+
+

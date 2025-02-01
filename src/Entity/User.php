@@ -27,8 +27,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\CustomIdGenerator(class: UuidGenerator::class)]
     private ?string $id = null;
 
-    #[ORM\Column(type: 'string', length: 4, nullable: true)]
+    #[ORM\Column(type: 'string', length: 10, nullable: true)]
     private ?string $userInitial = null;
+
 
     #[ORM\Column(type: 'string', length: 150, unique: true)]
     #[Assert\NotBlank(message: 'L\'email est obligatoire.')]

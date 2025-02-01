@@ -3,6 +3,7 @@
 namespace App\Entity\Articles;
 
 use App\Repository\Articles\CircuitRepository;
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -23,6 +24,10 @@ class Circuit
 
     #[ORM\Column(length: 255)]
     private ?string $name = null;
+
+    #[ORM\Column(type: 'string', length: 255, unique: true)]
+    #[Assert\NotBlank()]
+    private string $slug = '';
 
     #[ORM\Column(type: 'text')]
     private ?string $description = null;
@@ -197,6 +202,20 @@ class Circuit
     public function setMediafile($mediafile)
     {
         $this->mediafile = $mediafile;
+
+        return $this;
+    }
+
+  
+    public function getSlug()
+    {
+        return $this->slug;
+    }
+
+   
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
 
         return $this;
     }

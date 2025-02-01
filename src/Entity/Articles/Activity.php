@@ -3,8 +3,10 @@
 namespace App\Entity\Articles;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use App\Entity\Articles\MediaFile;
 use App\Entity\User;
 
 #[ORM\Entity]
@@ -17,6 +19,11 @@ class Activity
 
     #[ORM\Column(length: 255)]
     private ?string $name = null;
+
+    #[ORM\Column(type: 'string', length: 255, unique: true)]
+    #[Assert\NotBlank()]
+    private string $slug = '';
+
 
     #[ORM\Column(type: 'text', nullable: true)] // Ajout du champ description
     private ?string $description = null;
@@ -102,7 +109,7 @@ class Activity
     {
         if (!$this->circuits->contains($circuit)) {
             $this->circuits->add($circuit);
-            $circuit->addActivity($this); // Met à jour l'autre côté de la relation
+            $circuit->addActivity($this); 
         }
 
         return $this;
@@ -111,7 +118,7 @@ class Activity
     public function removeCircuit(Circuit $circuit): self
     {
         if ($this->circuits->removeElement($circuit)) {
-            $circuit->removeActivity($this); // Met à jour l'autre côté de la relation
+            $circuit->removeActivity($this); 
         }
 
         return $this;
@@ -161,7 +168,7 @@ class Activity
     #[ORM\PreUpdate]
     public function preUpdate()
     {
-        $this->updatedAt = new \DateTimeImmutable(); // Correction : majuscule remplacée par minuscule
+        $this->updatedAt = new \DateTimeImmutable(); 
     }
 
    
@@ -188,6 +195,20 @@ class Activity
     public function setMediafile($mediafile)
     {
         $this->mediafile = $mediafile;
+
+        return $this;
+    }
+
+ 
+    public function getSlug()
+    {
+        return $this->slug;
+    }
+
+    
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
 
         return $this;
     }

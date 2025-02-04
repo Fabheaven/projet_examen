@@ -19,30 +19,21 @@ class CircuitFixtures extends Fixture implements DependentFixtureInterface
         // Référence à la première catégorie "Circuits" (index 0)
         $category = $this->getReference('category_circuits_0', Category::class);
 
-        // Créer le premier circuit
-        $circuit1 = new Circuit();
-        $circuit1->setName('Circuit des châteaux')
-                 ->setDescription('Explorez les châteaux historiques.')
-                 ->setCategory($category)
-                 ->setPrice($faker->randomFloat(2, 50, 500))
-                 ->setAvailability($faker->boolean)
-                 ->setDuration($faker->numberBetween(1, 14))
-                 ->setState($faker->boolean)
-                 ->setSlug($faker->unique()->slug);
-                 
-        $manager->persist($circuit1);
+        // Créer 50 circuits
+        for ($i = 0; $i < 50; $i++) {
+            $circuit = new Circuit();
+            $circuit->setName($faker->sentence(3)) // Nom aléatoire
+                    ->setDescription($faker->paragraph) // Description aléatoire
+                    ->setCategory($category)
+                    ->setPrice($faker->randomFloat(2, 50, 500)) // Prix aléatoire entre 50 et 500
+                    ->setAvailability($faker->boolean) // Disponibilité aléatoire
+                    ->setDuration($faker->numberBetween(1, 14)) // Durée aléatoire entre 1 et 14 jours
+                    ->setState($faker->boolean) // État aléatoire (true/false)
+                    ->setSlug($faker->unique()->slug); // Slug unique
 
-        // Créer le deuxième circuit
-        $circuit2 = new Circuit();
-        $circuit2->setName('Circuit gastronomique')
-                 ->setDescription('Dégustez les spécialités locales.')
-                 ->setCategory($category)
-                 ->setPrice($faker->randomFloat(2, 50, 500))
-                 ->setAvailability($faker->boolean)
-                 ->setState($faker->boolean)
-                 ->setDuration($faker->numberBetween(1, 14)); 
-
-        $manager->persist($circuit2);
+            // Persister le circuit
+            $manager->persist($circuit);
+        }
 
         // Enregistrer les circuits en base de données
         $manager->flush();

@@ -10,8 +10,8 @@ class CategoryFixtures extends Fixture
 {
     public function load(ObjectManager $manager): void
     {
-        $categoriesActivites = ['Randonnée', 'Culture', 'Aventure'];
-        $categoriesCircuits = ['Voyage organisé', 'Road trip'];
+        $categoriesActivites = ['Randonnée', 'Culture', 'Aventure', 'Sports nautiques', 'Gastronomie', 'Bien-être et détente', 'Safari', 'Excursion en vélo'];
+        $categoriesCircuits = ['Voyage organisé', 'Road trip', 'Séjour aventure', 'Circuit culturel', 'Escapade en famille'];
 
         foreach ($categoriesActivites as $index => $cat) {
             $categorie = new Category();

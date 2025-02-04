@@ -283,4 +283,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         return $this->email;
     }
+
+   
+    public function getUserInitial()
+    {
+        return $this->userInitial;
+    }
+
+   
+    public function setUserInitial($userInitial)
+    {
+        $this->userInitial = $userInitial;
+
+        return $this;
+    }
 }

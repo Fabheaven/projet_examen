@@ -6,9 +6,9 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use App\Entity\Articles\Category;
 use App\Entity\Articles\MediaFile;
 use App\Entity\User;
-
 #[ORM\Entity]
 class Activity
 {
@@ -31,6 +31,7 @@ class Activity
     #[ORM\Column(type: 'decimal', precision: 10, scale: 2, nullable: true)] // Ajout du champ price
     private ?float $price = null;
 
+
     #[ORM\ManyToMany(targetEntity: Circuit::class, mappedBy: 'activities')]
     private Collection $circuits;
 
@@ -48,6 +49,10 @@ class Activity
 
     #[ORM\ManyToMany(targetEntity: User::class, inversedBy: 'activities')]
     private Collection $users; // Relation inverse N,N avec User
+
+    #[ORM\ManyToOne(targetEntity: Category::class, inversedBy: 'activities')]
+    private ?Category $category = null;
+
 
     // Constantes pour les états de l'activité
     public const STATES = ['active', 'inactive', 'pending']; 
@@ -209,6 +214,20 @@ class Activity
     public function setSlug($slug)
     {
         $this->slug = $slug;
+
+        return $this;
+    }
+
+    
+    public function getCategory()
+    {
+        return $this->category;
+    }
+
+    
+    public function setCategory($category)
+    {
+        $this->category = $category;
 
         return $this;
     }

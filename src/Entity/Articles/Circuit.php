@@ -7,6 +7,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use App\Entity\Articles\Category;
 use App\Entity\User;
 use App\Entity\Articles\MediaFile;
 
@@ -36,7 +37,7 @@ class Circuit
     private ?float $price = null;
 
     #[ORM\Column(type: 'integer')]
-    private ?string $duration = null; // Durée en heures ou jours
+    private ?int $duration = null; // Durée en heures ou jours
 
     #[ORM\Column(type: 'boolean')]
     private ?bool $availability = null; // Disponibilité
@@ -58,6 +59,10 @@ class Circuit
 
     #[ORM\ManyToMany(targetEntity: User::class, inversedBy: 'circuits')]
     private Collection $users; // Relation inverse N,N avec User
+
+    #[ORM\ManyToOne(targetEntity: Category::class, inversedBy: 'activities')]
+    private ?Category $category = null;
+
 
     public function __construct()
     {
@@ -216,6 +221,20 @@ class Circuit
     public function setSlug($slug)
     {
         $this->slug = $slug;
+
+        return $this;
+    }
+
+   
+    public function getCategory()
+    {
+        return $this->category;
+    }
+
+   
+    public function setCategory($category)
+    {
+        $this->category = $category;
 
         return $this;
     }

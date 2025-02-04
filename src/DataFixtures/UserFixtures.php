@@ -26,7 +26,8 @@ class UserFixtures extends Fixture
              ->setFirstName('Fabrice')
              ->setLastName('Mouk')
              ->setPhone($faker->phoneNumber)
-             ->setAddress($faker->address);
+             ->setAddress($faker->address)
+             ->setUserInitial('FM');
 
         // Définir un mot de passe par défaut et le hasher
         $defaultPassword = 'Bonjour123'; // Choisissez un mot de passe par défaut approprié
@@ -46,7 +47,8 @@ class UserFixtures extends Fixture
                     $this->hasher->hashPassword($user, 'password') // Hash le mot de passe
                 )
                 ->setPhone($faker->phoneNumber) // Génère un numéro de téléphone aléatoire
-                ->setAddress($faker->address);  // Génère une adresse aléatoire
+                ->setAddress($faker->address)  // Génère une adresse aléatoire
+                ->setUserInitial(mb_substr($user->getFirstName(), 0, 1) . mb_substr($user->getLastName(), 0, 1));
 
             // Persister l'utilisateur dans la base de données
             $manager->persist($user);

@@ -7,6 +7,7 @@ use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Knp\Component\Pager\PaginatorInterface;
 use Knp\Component\Pager\Pagination\PaginationInterface;
+use App\Entity\Articles\Category;
 
 /**
  * @extends ServiceEntityRepository<Circuit>
@@ -32,5 +33,17 @@ class CircuitRepository extends ServiceEntityRepository
         $circuit = $this->paginatorInterface->paginate($data, $page, 10);
 
         return $circuit;
+    }
+
+
+    public function findByCategoryWithJoins(Category $category): array
+    {
+        return $this->createQueryBuilder('ci')
+            ->leftJoin('ci.category', 'c')
+            ->addSelect('c')
+            ->andWhere('ci.category = :category')
+            ->setParameter('category', $category)
+            ->getQuery()
+            ->getResult();
     }
 }

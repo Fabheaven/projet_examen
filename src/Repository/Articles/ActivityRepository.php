@@ -7,6 +7,7 @@ use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Knp\Component\Pager\PaginatorInterface;
 use Knp\Component\Pager\Pagination\PaginationInterface;
+use App\Entity\Articles\Category;
 
 /**
  * @extends ServiceEntityRepository<Activity>
@@ -33,5 +34,17 @@ class ActivityRepository extends ServiceEntityRepository
 
         return $activities;
     }
+
+    // pour le bouton recherche
+    public function findByCategoryWithJoins(Category $category): array
+{
+    return $this->createQueryBuilder('a')
+        ->leftJoin('a.category', 'c')
+        ->addSelect('c')
+        ->andWhere('a.category = :category')
+        ->setParameter('category', $category)
+        ->getQuery()
+        ->getResult();
+}
 }
 

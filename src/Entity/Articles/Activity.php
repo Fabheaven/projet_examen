@@ -219,13 +219,13 @@ class Activity
     }
 
     
-    public function getCategory()
+    public function getCategory(): ?Category
     {
         return $this->category;
     }
 
     
-    public function setCategory($category)
+    public function setCategory(?Category $category): self
     {
         $this->category = $category;
 

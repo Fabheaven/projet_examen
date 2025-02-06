@@ -62,6 +62,14 @@ class Category
         return $this;
     }
 
+    public function removeActivity(Activity $activity): self
+    {
+        if ($activity->getCategory() === $this) {
+            $activity->setCategory(null);
+        }
+        return $this;
+    }
+
     public function getCircuits(): Collection
     {
         return $this->circuits;
@@ -72,6 +80,15 @@ class Category
         if (!$this->circuits->contains($circuit)) {
             $this->circuits[] = $circuit;
             $circuit->setCategory($this);
+        }
+        return $this;
+    }
+
+    public function removeCircuit(Circuit $circuit): self
+    {
+        if ($this->circuits->removeElement($circuit)) {
+            if ($circuit->getCategory() === $this);
+                $circuit->setCategory( null);
         }
         return $this;
     }

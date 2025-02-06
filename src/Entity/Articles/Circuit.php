@@ -60,7 +60,7 @@ class Circuit
     #[ORM\ManyToMany(targetEntity: User::class, inversedBy: 'circuits')]
     private Collection $users; // Relation inverse N,N avec User
 
-    #[ORM\ManyToOne(targetEntity: Category::class, inversedBy: 'activities')]
+    #[ORM\ManyToOne(targetEntity: Category::class, inversedBy: 'circuits')]
     private ?Category $category = null;
 
 
@@ -226,13 +226,13 @@ class Circuit
     }
 
    
-    public function getCategory()
+    public function getCategory(): ?Category
     {
         return $this->category;
     }
 
    
-    public function setCategory($category)
+    public function setCategory(?Category $category): self
     {
         $this->category = $category;
 

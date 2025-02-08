@@ -16,6 +16,15 @@
         <!-- activity.name en gras -->
         <h5 class="mb-2 text-xl font-medium leading-tight font-bold">{{ activity.name }}</h5>
         
+        <!-- badges -->
+        <div class="mb-4">
+            {% for badge in activity.categories %}
+                <span class="inline-block py-1 px-3 text-xs font-medium text-blue-600 bg-blue-100 rounded-full mr-2 mb-2">
+                    {{ badge.name }}
+                </span>
+            {% endfor %}
+        </div>
+
         <!-- activity.description avec taille de police plus petite -->
         <p class="mb-4 text-sm text-gray-700 dark:text-gray-300">
             {{ activity.description | slice(0, 100) ~ '...' }}

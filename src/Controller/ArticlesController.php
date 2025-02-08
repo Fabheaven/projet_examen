@@ -51,11 +51,11 @@ class ArticlesController extends AbstractController
         $circuit = $circuitRepository->findOneBy(['slug' => $slug]);
 
         if (!$circuit) {
-            throw $this->createNotFoundException('Circuit not found');
+            throw $this->createNotFoundException('Le circuit n\'a pas été trouvé');
         }
 
         return $this->render('pages/articles/showCircuit.html.twig', [
-            'circuit' => $circuit
+            'circuit' => $circuit,
         ]);
     }
 
@@ -78,7 +78,7 @@ class ArticlesController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $category = $form->get('category')->getData();
 
-            if ($category) {
+            if ($category instanceof Category) {
                 // Utiliser les méthodes personnalisées pour récupérer les activités et les circuits
                 $activities = $activityRepository->findByCategoryWithJoins($category);
                 $circuits = $circuitRepository->findByCategoryWithJoins($category);
@@ -107,5 +107,4 @@ class ArticlesController extends AbstractController
             'category' => $category,
         ]);
     }
-
 }

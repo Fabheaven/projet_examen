@@ -220,4 +220,10 @@ class Circuit
     {
         return $this->categories;
     }
+
+    public function getUpdatedAt(): ?\DateTimeImmutable
+    {
+        return $this->updatedAt;
+    }
+
 }

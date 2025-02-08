@@ -42,9 +42,6 @@ class Circuit
     #[ORM\Column(type: 'boolean')]
     private ?bool $availability = null; // Disponibilité
 
-    #[ORM\ManyToMany(targetEntity: Activity::class, inversedBy: 'circuits')]
-    private Collection $activities;
-
     #[ORM\Column(type: 'datetime_immutable')]
     private \DateTimeImmutable $createdAt;
     
@@ -60,13 +57,14 @@ class Circuit
     #[ORM\ManyToMany(targetEntity: User::class, inversedBy: 'circuits')]
     private Collection $users; // Relation inverse N,N avec User
 
-    #[ORM\ManyToOne(targetEntity: Category::class, inversedBy: 'circuits')]
-    private ?Category $category = null;
+    #[ORM\ManyToMany(targetEntity: Category::class, inversedBy: 'circuits')]
+    #[ORM\JoinTable(name: "circuit_category")]
+    private Collection $categories;
 
 
     public function __construct()
     {
-        $this->activities = new ArrayCollection();
+        $this->categories = new ArrayCollection();
         $this->users = new ArrayCollection();
         $this->createdAt = new \DateTimeImmutable();  // Initialiser la date de création
         $this->updatedAt = new \DateTimeImmutable();  // Initialiser la date de mise à jour
@@ -132,30 +130,6 @@ class Circuit
     public function setAvailability(bool $availability): self
     {
         $this->availability = $availability;
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, Activity>
-     */
-    public function getActivities(): Collection
-    {
-        return $this->activities;
-    }
-
-    public function addActivity(Activity $activity): self
-    {
-        if (!$this->activities->contains($activity)) {
-            $this->activities->add($activity);
-        }
-
-        return $this;
-    }
-
-    public function removeActivity(Activity $activity): self
-    {
-        $this->activities->removeElement($activity);
-
         return $this;
     }
 
@@ -226,16 +200,24 @@ class Circuit
     }
 
    
-    public function getCategory(): ?Category
+    public function addCategory(Category $category): self
     {
-        return $this->category;
-    }
-
-   
-    public function setCategory(?Category $category): self
-    {
-        $this->category = $category;
+        if (!$this->categories->contains($category)){
+            $this->categories[] = $category;
+        }
 
         return $this;
+    }
+
+    public function removeCategory(Category $category): self
+    {
+        $this->categories->removeElement($category);
+
+        return $this;
+    }
+
+    public function getCategories(): Collection
+    {
+        return $this->categories;
     }
 }

@@ -4,8 +4,6 @@ namespace App\Entity\Articles;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
-use App\Entity\Articles\Activity;
-use App\Entity\Articles\Circuit;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity]
@@ -19,10 +17,11 @@ class Category
     #[ORM\Column(type: 'string', length: 255)]
     private string $name;
 
-    #[ORM\OneToMany(targetEntity: Activity::class, mappedBy: 'category')]
+    #[ORM\ManyToMany(targetEntity: Activity::class, mappedBy: 'categories')]
     private Collection $activities;
 
-    #[ORM\OneToMany(targetEntity: Circuit::class, mappedBy: 'category')]
+
+    #[ORM\ManyToMany(targetEntity: Circuit::class, mappedBy: 'categories')]
     private Collection $circuits;
 
     public function __construct()
@@ -31,7 +30,6 @@ class Category
         $this->circuits = new ArrayCollection();
     }
 
-    // Getters et Setters
     public function getId(): ?int
     {
         return $this->id;
@@ -56,16 +54,16 @@ class Category
     public function addActivity(Activity $activity): self
     {
         if (!$this->activities->contains($activity)) {
-            $this->activities[] = $activity;
-            $activity->setCategory($this);
+            $this->activities->add($activity);
+            $activity->addCategory($this); // Synchronisation
         }
         return $this;
     }
-
+    
     public function removeActivity(Activity $activity): self
     {
-        if ($activity->getCategory() === $this) {
-            $activity->setCategory(null);
+        if ($this->activities->removeElement($activity)) {
+            $activity->removeCategory($this); // Synchronisation
         }
         return $this;
     }
@@ -79,7 +77,7 @@ class Category
     {
         if (!$this->circuits->contains($circuit)) {
             $this->circuits[] = $circuit;
-            $circuit->setCategory($this);
+            $circuit->addCategory($this); // Many-to-Many correction
         }
         return $this;
     }
@@ -87,8 +85,7 @@ class Category
     public function removeCircuit(Circuit $circuit): self
     {
         if ($this->circuits->removeElement($circuit)) {
-            if ($circuit->getCategory() === $this);
-                $circuit->setCategory( null);
+            $circuit->removeCategory($this); // Many-to-Many correction
         }
         return $this;
     }

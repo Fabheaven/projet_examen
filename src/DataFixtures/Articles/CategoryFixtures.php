@@ -10,9 +10,14 @@ class CategoryFixtures extends Fixture
 {
     public function load(ObjectManager $manager): void
     {
-        $categoriesActivites = ['Randonnée', 'Culture', 'Aventure', 'Sports nautiques', 'Gastronomie', 'Bien-être et détente', 'Safari', 'Excursion en vélo'];
-        $categoriesCircuits = ['Voyage organisé', 'Road trip', 'Séjour aventure', 'Circuit culturel', 'Escapade en famille'];
+        $categoriesActivites = [
+            'Randonnée', 'Culture', 'Aventure', 'Sports nautiques', 
+            'Gastronomie', 'Bien-être et détente', 'Safari', 'Excursion en vélo'
+        ];
 
+        $categoriesCircuits = ['Voyage organisé', 'Road trip', 'Séjour aventure', 'Circuit culturel', 'Escapade en famille', 'Autre catégorie'];
+
+        // Chargement des catégories d'activités
         foreach ($categoriesActivites as $index => $cat) {
             $categorie = new Category();
             $categorie->setName($cat);
@@ -20,6 +25,7 @@ class CategoryFixtures extends Fixture
             $this->addReference('category_activities_' . $index, $categorie);
         }
 
+        // Chargement des catégories de circuits
         foreach ($categoriesCircuits as $index => $cat) {
             $categorie = new Category();
             $categorie->setName($cat);

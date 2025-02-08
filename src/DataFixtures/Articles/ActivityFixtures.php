@@ -13,37 +13,53 @@ class ActivityFixtures extends Fixture implements DependentFixtureInterface
 {
     public function load(ObjectManager $manager): void
     {
-        // Créer une instance de Faker pour générer des données aléatoires
         $faker = Factory::create('fr_FR');
-
-        // Récupérer la référence de la catégorie
-        $category = $this->getReference('category_activities_0', Category::class);
-
-        // Liste des états possibles
         $states = ['active', 'inactive', 'pending'];
+
+        $categoryReferences = [];
+
+        // Charger les références des catégories d'activités
+        for ($i = 0; $i < 8; $i++) {
+            $referenceKey = "category_activities_$i";
+            if ($this->hasReference($referenceKey, Category::class)) { // Ajoutez Category::class comme deuxième argument
+                $categoryReferences[] = $this->getReference($referenceKey, Category::class); // Ajoutez Category::class comme deuxième argument
+            }
+        }
+
+        // Charger les références des catégories de circuits
+        for ($i = 0; $i < 6; $i++) {
+            $referenceKey = "category_circuits_$i";
+            if ($this->hasReference($referenceKey, Category::class)) { // Ajoutez Category::class comme deuxième argument
+                $categoryReferences[] = $this->getReference($referenceKey, Category::class); // Ajoutez Category::class comme deuxième argument
+            }
+        }
+
+        if (empty($categoryReferences)) {
+            throw new \RuntimeException('Aucune catégorie disponible pour associer aux activités.');
+        }
 
         // Créer 50 activités
         for ($i = 0; $i < 50; $i++) {
-            // Créer une nouvelle activité
             $activity = new Activity();
-            $activity->setName($faker->sentence(3)) // Nom aléatoire
-                     ->setDescription($faker->paragraph) // Description aléatoire
-                     ->setCategory($category)
-                     ->setState($states[array_rand($states)])
-                     ->setSlug($faker->unique()->slug);
-                     
-            // Persister l'activité
+            $activity->setName($faker->sentence(3))
+                ->setDescription($faker->paragraph)
+                ->setState($states[array_rand($states)])
+                ->setSlug($faker->unique()->slug);
+
+            // Associer aléatoirement entre 1 et 3 catégories
+            $randomCategories = $faker->randomElements($categoryReferences, rand(1, 3));
+            foreach ($randomCategories as $category) {
+                $activity->addCategory($category);
+            }
+
             $manager->persist($activity);
         }
 
-        // Enregistrer en base de données
         $manager->flush();
     }
 
     public function getDependencies(): array
     {
-        return [
-            CategoryFixtures::class,
-        ];
+        return [CategoryFixtures::class];
     }
 }

@@ -22,6 +22,10 @@
                             alt="Default image" />
                     {% endif %}
                 </a>
+                <div class="w-2/3 mx-auto my-8 leading-6">
+                    {% include "components/badges.html.twig" with { badges: activity.categories } only %}
+
+                </div>
                 <div class="p-6">
                     <h5 class="mb-2 text-xl font-medium leading-tight">{{ activity.name }}</h5>
                     <p class="mb-4 text-base">{{ activity.description|raw }}</p>  {# Utilisation de raw si la description contient du HTML #}

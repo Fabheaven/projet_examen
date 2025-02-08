@@ -9,6 +9,7 @@ use Doctrine\Common\Collections\Collection;
 use App\Entity\Articles\Category;
 use App\Entity\Articles\MediaFile;
 use App\Entity\User;
+
 #[ORM\Entity]
 class Activity
 {
@@ -32,9 +33,6 @@ class Activity
     private ?float $price = null;
 
 
-    #[ORM\ManyToMany(targetEntity: Circuit::class, mappedBy: 'activities')]
-    private Collection $circuits;
-
     #[ORM\Column(type: 'datetime_immutable')]
     private \DateTimeImmutable $createdAt;
     
@@ -50,8 +48,8 @@ class Activity
     #[ORM\ManyToMany(targetEntity: User::class, inversedBy: 'activities')]
     private Collection $users; // Relation inverse N,N avec User
 
-    #[ORM\ManyToOne(targetEntity: Category::class, inversedBy: 'activities')]
-    private ?Category $category = null;
+    #[ORM\ManyToMany(targetEntity: Category::class, inversedBy: 'activities')]
+    private Collection $categories;
 
 
     // Constantes pour les états de l'activité
@@ -59,7 +57,7 @@ class Activity
 
     public function __construct()
     {
-        $this->circuits = new ArrayCollection();
+        $this->categories = new ArrayCollection();
         $this->users = new ArrayCollection();
         $this->state = self::STATES[0];  // Définit un état par défaut
         $this->createdAt = new \DateTimeImmutable();
@@ -102,30 +100,6 @@ class Activity
     public function setPrice(?float $price): self
     {
         $this->price = $price;
-        return $this;
-    }
-
-    public function getCircuits(): Collection
-    {
-        return $this->circuits;
-    }
-
-    public function addCircuit(Circuit $circuit): self
-    {
-        if (!$this->circuits->contains($circuit)) {
-            $this->circuits->add($circuit);
-            $circuit->addActivity($this); 
-        }
-
-        return $this;
-    }
-
-    public function removeCircuit(Circuit $circuit): self
-    {
-        if ($this->circuits->removeElement($circuit)) {
-            $circuit->removeActivity($this); 
-        }
-
         return $this;
     }
 
@@ -219,16 +193,22 @@ class Activity
     }
 
     
-    public function getCategory(): ?Category
+    public function getCategories()
     {
-        return $this->category;
+        return $this->categories;
     }
 
-    
-    public function setCategory(?Category $category): self
+    public function addCategory(Category $category): self
     {
-        $this->category = $category;
+        if (!$this->categories->contains($category)) {
+            $this->categories->add($category);
+        }
+        return $this;
+    }
 
+    public function removeCategory(Category $category): self
+    {
+        $this->categories->removeElement($category);
         return $this;
     }
 }

@@ -93,4 +93,19 @@ class ArticlesController extends AbstractController
             'circuits' => $circuits,
         ]);
     }
+
+    #[Route('/categories/{slug}', name: 'category.index', methods: ['GET'])]
+    public function showCategory(string $slug, CategoryRepository $categoryRepository): Response
+    {
+        $category = $categoryRepository->findOneBy(['slug' => $slug]);
+
+        if (!$category) {
+            throw $this->createNotFoundException('Category not found');
+        }
+
+        return $this->render('pages/articles/showCategory.html.twig', [
+            'category' => $category,
+        ]);
+    }
+
 }

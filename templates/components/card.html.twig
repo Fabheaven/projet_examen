@@ -1,24 +1,29 @@
 <div class="block max-w-sm rounded-lg bg-white shadow-lg dark:bg-gray-800">
-        <div class="relative overflow-hidden bg-cover bg-no-repeat">
-            {% if activity.mediafile %}
-                <a href="{{ path('app_articles_showActivity', {slug: activity.slug}) }}">
-                    <img class="rounded-t-lg w-full h-48 object-cover" 
-                         src="{{ vich_uploader_asset(activity.mediafile, 'mediaFile') }}" 
-                         alt="{{ activity.mediafile.imageName }}">
-                </a>
-            {% endif %}
+    <div class="relative overflow-hidden bg-cover bg-no-repeat">
+        {% if activity.mediafile %}
             <a href="{{ path('app_articles_showActivity', {slug: activity.slug}) }}">
-                <div class="absolute inset-0 bg-gray-200 opacity-0 transition-opacity duration-300 hover:opacity-25"></div>
+                <img class="rounded-t-lg w-full h-48 object-cover" 
+                     src="{{ vich_uploader_asset(activity.mediafile, 'mediaFile') }}" 
+                     alt="{{ activity.mediafile.imageName }}">
             </a>
-        </div>
-        
-        <div class="p-6 text-gray-900 dark:text-white">
-            <h5 class="mb-2 text-xl font-medium leading-tight">{{ activity.name }}</h5>
-            <p class="mb-4 text-base">
-                {{ activity.description | slice(0, 100) ~ '...' }}
-            </p>
-            <a href="{{ path('app_articles_showActivity', {slug: activity.slug}) }}" class="inline-block rounded bg-blue-600 px-6 py-2 text-xs font-medium uppercase text-white transition duration-150 ease-in-out hover:bg-blue-700 focus:bg-blue-700 active:bg-blue-800">
-                Découvrir
-            </a>
-        </div>
+        {% endif %}
+        <a href="{{ path('app_articles_showActivity', {slug: activity.slug}) }}">
+            <div class="absolute inset-0 bg-gray-200 opacity-0 transition-opacity duration-300 hover:opacity-25"></div>
+        </a>
     </div>
+    
+    <div class="p-6 text-gray-900 dark:text-white">
+        <!-- activity.name en gras -->
+        <h5 class="mb-2 text-xl font-medium leading-tight font-bold">{{ activity.name }}</h5>
+        
+        <!-- activity.description avec taille de police plus petite -->
+        <p class="mb-4 text-sm text-gray-700 dark:text-gray-300">
+            {{ activity.description | slice(0, 100) ~ '...' }}
+        </p>
+        
+        <a href="{{ path('app_articles_showActivity', {slug: activity.slug}) }}" 
+           class="inline-block rounded bg-blue-600 px-6 py-2 text-xs font-medium uppercase text-white transition duration-150 ease-in-out hover:bg-blue-700 focus:bg-blue-700 active:bg-blue-800">
+            Découvrir
+        </a>
+    </div>
+</div>

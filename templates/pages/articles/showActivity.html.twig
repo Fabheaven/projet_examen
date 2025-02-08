@@ -6,7 +6,12 @@
 
 {% block body %}
     <div class="container mx-auto">
-        <h1>{{ activity.name|capitalize }}</h1>
+        <h1 class="text-5xl text-center mt-8 mb-4 text-blue-700 font-bold">
+            {{ activity.name|capitalize }}!
+        </h1>
+        <h2 class="text-2xl text-center mb-8">Publié le
+            {{ activity.createdAt|date('d/m/Y') }}</h2>
+
         <div class="sm:flex sm:justify-center">
             <div class="flex flex-col rounded-lg bg-white text-surface shadow-secondary-1 dark:bg-surface-dark dark:text-white sm:shrink-0 sm:grow sm:basis-0 sm:rounded-e-none">
                 <a href="{{ path('app_articles_showActivity', {'slug': activity.slug}) }}">
@@ -24,7 +29,6 @@
                 </a>
                 <div class="w-2/3 mx-auto my-8 leading-6">
                     {% include "components/badges.html.twig" with { badges: activity.categories } only %}
-
                 </div>
                 <div class="p-6">
                     <h5 class="mb-2 text-xl font-medium leading-tight">{{ activity.name }}</h5>

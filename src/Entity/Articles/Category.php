@@ -3,6 +3,7 @@
 namespace App\Entity\Articles;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -16,6 +17,11 @@ class Category
 
     #[ORM\Column(type: 'string', length: 255)]
     private string $name;
+
+    #[ORM\Column(type: 'string', length: 255, unique: true)]
+    #[Assert\NotBlank(message: "Le slug ne peut pas être vide.")]
+    private string $slug;
+
 
     #[ORM\ManyToMany(targetEntity: Activity::class, mappedBy: 'categories')]
     private Collection $activities;
@@ -87,6 +93,17 @@ class Category
         if ($this->circuits->removeElement($circuit)) {
             $circuit->removeCategory($this); // Many-to-Many correction
         }
+        return $this;
+    }
+
+    public function getSlug(): string
+    {
+        return $this->slug;
+    }
+
+    public function setSlug(string $slug): self
+    {
+        $this->slug = $slug;
         return $this;
     }
 }

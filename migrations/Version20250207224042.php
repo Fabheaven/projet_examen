@@ -132,6 +132,5 @@ final class Version20250207224042 extends AbstractMigration
         $this->addSql('DROP TABLE wishlist');
         $this->addSql('DROP TABLE wishlist_activity');
         $this->addSql('DROP TABLE wishlist_circuit');
-        $this->addSql('DROP TABLE messenger_messages');
     }
 }

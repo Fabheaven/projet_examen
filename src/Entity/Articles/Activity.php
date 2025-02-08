@@ -51,6 +51,8 @@ class Activity
     #[ORM\ManyToMany(targetEntity: Category::class, inversedBy: 'activities')]
     private Collection $categories;
 
+    #[ORM\ManyToMany(targetEntity: Activity::class, mappedBy: 'categories')]
+    private Collection $activities;
 
     // Constantes pour les états de l'activité
     public const STATES = ['active', 'inactive', 'pending']; 
@@ -58,6 +60,7 @@ class Activity
     public function __construct()
     {
         $this->categories = new ArrayCollection();
+        $this->activities = new ArrayCollection();
         $this->users = new ArrayCollection();
         $this->state = self::STATES[0];  // Définit un état par défaut
         $this->createdAt = new \DateTimeImmutable();
@@ -106,6 +109,11 @@ class Activity
     public function getUsers(): Collection
     {
         return $this->users;
+    }
+
+    public function getActivities(): Collection
+    {
+        return $this->activities;
     }
 
     public function setUsers(Collection $users): self
@@ -171,10 +179,10 @@ class Activity
     }
 
    
-    public function setMediafile($mediafile)
+    public function setMediafile(?MediaFile $mediafile): self
     {
         $this->mediafile = $mediafile;
-
+        
         return $this;
     }
 
@@ -185,15 +193,15 @@ class Activity
     }
 
     
-    public function setSlug($slug)
+    public function setSlug(string $slug): self
     {
         $this->slug = $slug;
-
+        
         return $this;
     }
 
     
-    public function getCategories()
+    public function getCategories(): Collection
     {
         return $this->categories;
     }

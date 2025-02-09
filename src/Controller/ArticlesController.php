@@ -97,20 +97,41 @@ class ArticlesController extends AbstractController
     }
 
     #[Route('/categories', name: 'category.list', methods: ['GET'])]
-    public function listCategories(CategoryRepository $categoryRepository): Response
-    {
+    public function listCategories(
+        CategoryRepository $categoryRepository,
+        CircuitRepository $circuitRepository,
+        ActivityRepository $activityRepository,
+        Request $request
+    ): Response {
         // Récupérer toutes les catégories
         $allCategories = $categoryRepository->findAll();
-    
-        // Filtrer les catégories pour exclure celles avec un slug vide
         $allCategories = array_filter($allCategories, function($category) {
             return !empty($category->getSlug());
         });
-    
-        // Passer allCategories à la vue
-        return $this->render('pages/articles/circuits.html.twig', [
-            'allCategories' => $allCategories,
-        ]);
+
+        // Pagination pour les circuits
+        $circuits = $circuitRepository->findPublished($request->query->getInt('page', 1));
+
+        // Pagination pour les activités
+        $activities = $activityRepository->findPublished($request->query->getInt('page', 1));
+
+        // Exemple de logique pour décider vers quelle vue rediriger
+        $route = $request->query->get('view', 'circuits'); // Vous pouvez envoyer un paramètre pour choisir la vue
+
+        if ($route === 'activities') {
+            // Si la vue demandée est 'activities', rediriger vers la page des activités
+            return $this->render('pages/articles/activities.html.twig', [
+                'allCategories' => $allCategories,
+                'activities' => $activities,
+            ]);
+        } else {
+         // Par défaut, afficher la page des circuits
+         return $this->render('pages/articles/circuits.html.twig', [
+                'allCategories' => $allCategories,
+                'circuits' => $circuits,
+            ]);
+        }
     }
+
     
 }

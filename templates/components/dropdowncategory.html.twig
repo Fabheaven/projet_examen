@@ -11,9 +11,9 @@
                 {% for category in allCategories %}
                     <li>
                         <a class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" 
-   href="{{ path('category.list', {slug: category.slug}) }}">
-    {{ category.name|capitalize }}
-</a>
+   						href="{{ path('category.list', {slug: category.slug}) }}">
+    						{{ category.name|capitalize }}
+						</a>
                     </li>
                 {% endfor %}
             </ul>

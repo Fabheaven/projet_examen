@@ -1,26 +1,20 @@
-{% include "layouts/articles.html.twig" with
+{% extends 'base.html.twig' %}
 
-title: "diosso activités",
-
-title2: "Nos différentes activités"
 {% block body %}
 <div class="container mx-auto">
    <h1 class="text-5xl font-bold text-center mt-24 mb-8">Nos différentes activités</h1>
+   {% include "components/dropdowncategory.html.twig" with { options: allCategories } only %}
 </div>
 
-<!-- Conteneur des cartes -->
+<!-- Conteneur des cartes pour les activités -->
 <div class="container flex flex-wrap justify-center gap-8 mt-8">
     {% for activity in activities %}
         {% include "components/card.html.twig" with { activity: activity } only %}
     {% endfor %}
 </div>
 
-<!-- Pagination bien placée sous les cartes -->
+<!-- Pagination pour les activités -->
 <div class="navigation flex justify-center w-full mt-8 mb-8">
     {{ knp_pagination_render(activities) }}
 </div>
-
-
 {% endblock %}
-
-%}

@@ -45,6 +45,7 @@ class ArticlesController extends AbstractController
         ]);
     }
 
+
     #[Route('/circuit/{slug}', name: 'app_articles_showCircuit', methods: ['GET'])]
     public function showCircuit(string $slug, CircuitRepository $circuitRepository): Response
     {
@@ -95,17 +96,21 @@ class ArticlesController extends AbstractController
         ]);
     }
 
-    #[Route('/categories/{slug}', name: 'category.index', methods: ['GET'])]
-    public function showCategory(string $slug, CategoryRepository $categoryRepository): Response
+    #[Route('/categories', name: 'category.list', methods: ['GET'])]
+    public function listCategories(CategoryRepository $categoryRepository): Response
     {
-        $category = $categoryRepository->findOneBy(['slug' => $slug]);
-
-        if (!$category) {
-            throw $this->createNotFoundException('Category not found');
-        }
-
-        return $this->render('pages/articles/showCategory.html.twig', [
-            'category' => $category,
+        // Récupérer toutes les catégories
+        $allCategories = $categoryRepository->findAll();
+    
+        // Filtrer les catégories pour exclure celles avec un slug vide
+        $allCategories = array_filter($allCategories, function($category) {
+            return !empty($category->getSlug());
+        });
+    
+        // Passer allCategories à la vue
+        return $this->render('pages/articles/circuits.html.twig', [
+            'allCategories' => $allCategories,
         ]);
     }
+    
 }

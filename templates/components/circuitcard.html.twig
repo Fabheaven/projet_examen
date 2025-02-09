@@ -1,20 +1,47 @@
-<div class="mx-3 mt-6 flex flex-col rounded-lg bg-white text-surface shadow-secondary-1 dark:bg-surface-dark dark:text-white sm:shrink-0 sm:grow sm:basis-0">
-    <a href="{{ path('app_articles_showCircuit', {slug: circuit.slug}) }}">
-        {% if circuit.mediafile %}
-            <img class="rounded-t-lg w-full h-48 object-cover"
-                 src="{{ vich_uploader_asset(circuit.mediafile, 'mediaFile') }}"
-                 alt="{{ circuit.mediafile.imageName }}">
-        {% else %}
-            <img class="rounded-t-lg w-full h-48 object-cover"
-                 src="https://tecdn.b-cdn.net/img/new/standard/city/041.webp"
-                 alt="Default image">
-        {% endif %}
-    </a>
-    <div class="p-6">
-        <h5 class="mb-2 text-xl font-medium leading-tight">{{ circuit.name }}</h5>
-        <p class="mb-4 text-base">{{ circuit.description | slice(0, 100) ~ '...' }}</p>
-    </div>
-    <div class="mt-auto border-t-2 border-neutral-100 px-6 py-3 text-center text-surface/75 dark:border-white/10 dark:text-neutral-300">
-        <p>Mis à jour le : {{ circuit.updatedAt|date('d/m/Y') }}</p>
+<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+    <div class="block w-full rounded-lg bg-white shadow-lg dark:bg-gray-800">
+        <div class="relative overflow-hidden bg-cover bg-no-repeat">
+            {% if circuit.mediafile %}
+                <a href="{{ path('app_articles_showCircuit', {slug: circuit.slug}) }}">
+                    <img class="rounded-t-lg w-full h-48 object-cover"
+                         src="{{ vich_uploader_asset(circuit.mediafile, 'mediaFile') }}"
+                         alt="{{ circuit.mediafile.imageName }}">
+                </a>
+            {% else %}
+                <a href="{{ path('app_articles_showCircuit', {slug: circuit.slug}) }}">
+                    <img class="rounded-t-lg w-full h-48 object-cover"
+                         src="https://tecdn.b-cdn.net/img/new/standard/city/041.webp"
+                         alt="Default image">
+                </a>
+            {% endif %}
+            <a href="{{ path('app_articles_showCircuit', {slug: circuit.slug}) }}">
+                <div class="absolute inset-0 bg-gray-200 opacity-0 transition-opacity duration-300 hover:opacity-25"></div>
+            </a>
+        </div>
+
+        <div class="p-6 text-gray-900 dark:text-white">
+            <!-- Nom du circuit en gras -->
+            <h5 class="mb-2 text-xl font-medium leading-tight font-bold text-center">{{ circuit.name }}</h5>
+
+            <!-- Affichage des catégories (si applicable) -->
+            <div class="mb-4">
+                {% for badge in circuit.categories %}
+                    <span class="inline-block py-1 px-3 text-xs font-medium text-blue-600 bg-blue-100 rounded-full mr-2 mb-2">
+                        {{ badge.name }}
+                    </span>
+                {% endfor %}
+            </div>
+
+            <!-- Description avec taille de police plus petite -->
+            <p class="mb-4 text-sm text-gray-700 dark:text-gray-300">
+                {{ circuit.description | slice(0, 100) ~ '...' }}
+            </p>
+
+            <!-- Bouton "Découvrir" avec le style approprié -->
+            <a href="{{ path('app_articles_showCircuit', {slug: circuit.slug}) }}"
+               class="inline-block rounded bg-blue-600 px-6 py-2 text-xs font-medium uppercase text-white transition duration-150 ease-in-out hover:bg-blue-700 focus:bg-blue-700 active:bg-blue-800">
+                {{ circuit.price }} €
+            </a>
+        </div>
     </div>
 </div>

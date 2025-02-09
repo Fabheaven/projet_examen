@@ -1,43 +1,53 @@
-{% extends "base.html.twig" %}
+{% extends 'base.html.twig' %}
 
-{% block name %}
-    {{ circuit.name }}
-{% endblock %}
+{% block title %}Nos circuits{% endblock %}
 
 {% block body %}
-    <div class="container mx-auto">
-        <h1 class="text-5xl text-center mt-8 mb-4 text-blue-700 font-bold">
-            {{ circuit.name|capitalize }}!
-        </h1>
-        <h2 class="text-2xl text-center mb-8">Publié le
-            {{ circuit.createdAt|date('d/m/Y') }}</h2>
+<div class="container mx-auto">
+   <h1 class="text-5xl font-bold text-center mt-24 mb-8">Nos différentes circuits</h1>
+</div>
 
-        <div class="sm:flex sm:justify-center">
-            <div class="flex flex-col rounded-lg bg-white text-surface shadow-secondary-1 dark:bg-surface-dark dark:text-white sm:shrink-0 sm:grow sm:basis-0 sm:rounded-e-none">
-                <a href="{{ path('app_circuits_showCircuit', {'slug': circuit.slug}) }}">
-                    {% if circuit.mediafile %}
-                        <img
-                            class="rounded-t-lg sm:rounded-tr-none"
-                            src="{{ vich_uploader_asset(circuit.mediafile, 'mediaFile') }}"
-                            alt="{{ circuit.mediafile.imageName }}" />
-                    {% else %}
-                        <img
-                            class="rounded-t-lg sm:rounded-tr-none"
-                            src="https://tecdn.b-cdn.net/img/new/standard/city/041.webp"
-                            alt="Default image" />
-                    {% endif %}
+<!-- Conteneur des cartes -->
+<div class="container grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+    {% for circuit in circuits %}
+        <div class="block w-full rounded-lg bg-white shadow-lg dark:bg-gray-800">
+            <div class="relative overflow-hidden bg-cover bg-no-repeat">
+                {% if circuit.mediafile %}
+                    <a href="{{ path('app_articles_showCircuit', {slug: circuit.slug}) }}">
+                        <img class="rounded-t-lg w-full h-48 object-cover"
+                             src="{{ vich_uploader_asset(circuit.mediafile, 'mediaFile') }}"
+                             alt="{{ circuit.mediafile.imageName }}">
+                    </a>
+                {% else %}
+                    <a href="{{ path('app_articles_showCircuit', {slug: circuit.slug}) }}">
+                        <img class="rounded-t-lg w-full h-48 object-cover"
+                             src="https://tecdn.b-cdn.net/img/new/standard/city/041.webp"
+                             alt="Default image">
+                    </a>
+                {% endif %}
+                <a href="{{ path('app_articles_showCircuit', {slug: circuit.slug}) }}">
+                    <div class="absolute inset-0 bg-gray-200 opacity-0 transition-opacity duration-300 hover:opacity-25"></div>
                 </a>
-                <div class="w-2/3 mx-auto my-8 leading-6">
-                    {% include "components/badges.html.twig" with { badges: circuit.categories } only %}
+            </div>
+
+            <div class="p-6 text-gray-900 dark:text-white">
+                <h5 class="mb-2 text-xl font-medium leading-tight font-bold text-center">{{ circuit.name }}</h5>
+                <div class="mb-4">
+                    {% for badge in circuit.categories %}
+                        <span class="inline-block py-1 px-3 text-xs font-medium text-blue-600 bg-blue-100 rounded-full mr-2 mb-2">
+                            {{ badge.name }}
+                        </span>
+                    {% endfor %}
                 </div>
-                <div class="p-6">
-                    <h5 class="mb-2 text-xl font-medium leading-tight">{{ circuit.name }}</h5>
-                    <p class="mb-4 text-base">{{ circuit.description|raw }}</p>  {# Utilisation de raw si la description contient du HTML #}
-                    <p class="mb-4 text-base text-surface/75 dark:text-neutral-300">
-                        <small>Dernière mise à jour: {{ circuit.updatedAt|date('d/m/Y') }}</small>
-                    </p>
-                </div>
+                <p class="mb-4 text-sm text-gray-700 dark:text-gray-300">
+                    {{ circuit.description | slice(0, 100) ~ '...' }}
+                </p>
+                <a href="{{ path('app_articles_showCircuit', {slug: circuit.slug}) }}"
+                   class="inline-block rounded bg-blue-600 px-6 py-2 text-xs font-medium uppercase text-white transition duration-150 ease-in-out hover:bg-blue-700 focus:bg-blue-700 active:bg-blue-800">
+                    {{ circuit.price }} €
+                </a>
             </div>
         </div>
-    </div>
+    {% endfor %}
+</div>
 {% endblock %}

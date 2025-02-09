@@ -48,13 +48,17 @@ class ArticlesController extends AbstractController
     #[Route('/circuit/{slug}', name: 'app_articles_showCircuit', methods: ['GET'])]
     public function showCircuit(string $slug, CircuitRepository $circuitRepository): Response
     {
-        // Récupère une liste de circuits (par exemple, tous les circuits)
-        $circuits = $circuitRepository->findAll();
-    
+        $circuit = $circuitRepository->findOneBy(['slug' => $slug]);
+
+        if (!$circuit) {
+            throw $this->createNotFoundException('Circuit non trouvé.');
+        }
+
         return $this->render('pages/articles/showCircuit.html.twig', [
-            'circuits' => $circuits,
+            'circuit' => $circuit,
         ]);
     }
+
 
     #[Route('/articles/search-by-category', name: 'app_articles_search_by_category', methods: ['GET', 'POST'])]
     public function searchByCategory(

@@ -2,13 +2,52 @@
 
 {% block body %}
 <div class="container mx-auto">
-   <h1 class="text-5xl font-bold text-center mt-24 mb-8">Nos différentes circuits</h1>
+   <h1 class="text-5xl font-bold text-center mt-24 mb-8">Nos différents circuits</h1>
 </div>
 
-<!-- Conteneur des cartes -->
-<div class="container flex flex-wrap justify-center gap-8 mt-8">
+<!-- Conteneur des cartes avec grille fluide -->
+<div class="container grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-8">
     {% for circuit in circuits %}
-        {% include "components/circuitcard.html.twig" with { circuit: circuit } only %}
+        <div class="block w-full rounded-lg bg-white shadow-lg dark:bg-gray-800">
+            <div class="relative overflow-hidden bg-cover bg-no-repeat">
+                {% if circuit.mediafile %}
+                    <a href="{{ path('app_articles_showCircuit', {slug: circuit.slug}) }}">
+                        <img class="rounded-t-lg w-full h-48 object-cover"
+                             src="{{ vich_uploader_asset(circuit.mediafile, 'mediaFile') }}"
+                             alt="{{ circuit.mediafile.imageName }}">
+                    </a>
+                {% else %}
+                    <a href="{{ path('app_articles_showCircuit', {slug: circuit.slug}) }}">
+                        <img class="rounded-t-lg w-full h-48 object-cover"
+                             src="https://tecdn.b-cdn.net/img/new/standard/city/041.webp"
+                             alt="Default image">
+                    </a>
+                {% endif %}
+            </div>
+
+            <div class="p-6 text-gray-900 dark:text-white">
+                <h5 class="mb-2 text-xl font-medium leading-tight font-bold text-center">{{ circuit.name }}</h5>
+                <div class="mb-4">
+                    {% for badge in circuit.categories %}
+                        <span class="inline-block py-1 px-3 text-xs font-medium text-blue-600 bg-blue-100 rounded-full mr-2 mb-2">
+                            {{ badge.name }}
+                        </span>
+                    {% endfor %}
+                </div>
+                <p class="mb-4 text-sm text-gray-700 dark:text-gray-300">
+                    {{ circuit.description | slice(0, 100) ~ '...' }}
+                </p>
+                <a href="{{ path('app_articles_showCircuit', {slug: circuit.slug}) }}"
+                   class="inline-block rounded bg-blue-600 px-6 py-2 text-xs font-medium uppercase text-white transition duration-150 ease-in-out hover:bg-blue-700 focus:bg-blue-700 active:bg-blue-800">
+                    {{ circuit.price }} €
+                </a>
+            </div>
+        </div>
     {% endfor %}
+</div>
+
+<!-- Pagination bien placée sous les cartes -->
+<div class="navigation flex justify-center w-full mt-8 mb-8">
+    {{ knp_pagination_render(circuits) }}
 </div>
 {% endblock %}

@@ -1,33 +1,24 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Nos circuits{% endblock %}
+{% block title %}{{ circuit.name }}{% endblock %}
 
 {% block body %}
 <div class="container mx-auto">
-   <h1 class="text-5xl font-bold text-center mt-24 mb-8">Nos différentes circuits</h1>
-</div>
+    <h1 class="text-5xl font-bold text-center mt-24 mb-8">{{ circuit.name }}</h1>
 
-<!-- Conteneur des cartes -->
-<div class="container grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-    {% for circuit in circuits %}
-        <div class="block w-full rounded-lg bg-white shadow-lg dark:bg-gray-800">
+    <!-- Affichage d'une seule carte centrée -->
+    <div class="flex justify-center mt-8">
+        <div class="block w-full max-w-3xl rounded-lg bg-white shadow-lg dark:bg-gray-800">
             <div class="relative overflow-hidden bg-cover bg-no-repeat">
                 {% if circuit.mediafile %}
-                    <a href="{{ path('app_articles_showCircuit', {slug: circuit.slug}) }}">
-                        <img class="rounded-t-lg w-full h-48 object-cover"
-                             src="{{ vich_uploader_asset(circuit.mediafile, 'mediaFile') }}"
-                             alt="{{ circuit.mediafile.imageName }}">
-                    </a>
+                    <img class="rounded-t-lg w-full h-72 object-cover"
+                         src="{{ vich_uploader_asset(circuit.mediafile, 'mediaFile') }}"
+                         alt="{{ circuit.mediafile.imageName }}">
                 {% else %}
-                    <a href="{{ path('app_articles_showCircuit', {slug: circuit.slug}) }}">
-                        <img class="rounded-t-lg w-full h-48 object-cover"
-                             src="https://tecdn.b-cdn.net/img/new/standard/city/041.webp"
-                             alt="Default image">
-                    </a>
+                    <img class="rounded-t-lg w-full h-72 object-cover"
+                         src="https://tecdn.b-cdn.net/img/new/standard/city/041.webp"
+                         alt="Default image">
                 {% endif %}
-                <a href="{{ path('app_articles_showCircuit', {slug: circuit.slug}) }}">
-                    <div class="absolute inset-0 bg-gray-200 opacity-0 transition-opacity duration-300 hover:opacity-25"></div>
-                </a>
             </div>
 
             <div class="p-6 text-gray-900 dark:text-white">
@@ -39,15 +30,12 @@
                         </span>
                     {% endfor %}
                 </div>
-                <p class="mb-4 text-sm text-gray-700 dark:text-gray-300">
-                    {{ circuit.description | slice(0, 100) ~ '...' }}
+                <p class="mb-4 text-base text-gray-700 dark:text-gray-300">
+                    {{ circuit.description | raw }}
                 </p>
-                <a href="{{ path('app_articles_showCircuit', {slug: circuit.slug}) }}"
-                   class="inline-block rounded bg-blue-600 px-6 py-2 text-xs font-medium uppercase text-white transition duration-150 ease-in-out hover:bg-blue-700 focus:bg-blue-700 active:bg-blue-800">
-                    {{ circuit.price }} €
-                </a>
+                <p class="text-lg font-bold">Prix: {{ circuit.price }} €</p>
             </div>
         </div>
-    {% endfor %}
+    </div>
 </div>
 {% endblock %}

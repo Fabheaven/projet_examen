@@ -17,7 +17,7 @@
             <a href="{{ path('app_articles_showCircuit', {slug: circuit.slug}) }}">
                 <div class="absolute inset-0 bg-gray-200 opacity-0 transition-opacity duration-300 hover:opacity-25"></div>
             </a>
-        </div>
+        </div> 
 
         <div class="p-6 text-gray-900 dark:text-white">
             <!-- Nom du circuit en gras -->
@@ -36,6 +36,16 @@
             <p class="mb-4 text-sm text-gray-700 dark:text-gray-300">
                 {{ circuit.description | slice(0, 100) ~ '...' }}
             </p>
+
+            <!-- Affichage de la disponibilité -->
+            <div class="mb-4">
+                <span class="inline-block py-1 px-3 text-xs font-medium 
+                            {% if circuit.availability %}text-green-600 bg-green-100
+                            {% else %}text-red-600 bg-red-100{% endif %} 
+                            rounded-full">
+                    {% if circuit.availability %}Disponible{% else %}Indisponible{% endif %}
+                </span>
+            </div>
 
             <!-- Bouton "Découvrir" avec le style approprié -->
             <a href="{{ path('app_articles_showCircuit', {slug: circuit.slug}) }}"

@@ -1,4 +1,4 @@
-{% if options %}
+{% if options is defined and options %}
     <div class="flex justify-end">
         <div x-data="{ open: false }" class="relative">
             <button @click="open = !open" class="px-6 py-2.5 bg-blue-600 text-white font-medium text-xs uppercase rounded shadow-md hover:bg-blue-700 transition flex items-center">
@@ -10,7 +10,8 @@
             <ul x-show="open" @click.away="open = false" class="absolute right-0 mt-2 w-48 bg-white border rounded-lg shadow-md z-50">
                 {% for category in options %}
                     <li>
-                        <a class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" 
+                        <a class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 
+                                  {% if currentCategory is defined and currentCategory and currentCategory.id == category.id %}bg-blue-100 font-semibold{% endif %}" 
                            href="{{ path('category.list', {slug: category.slug}) }}">
                             {{ category.name|capitalize }}
                         </a>

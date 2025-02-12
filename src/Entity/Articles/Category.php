@@ -3,11 +3,13 @@
 namespace App\Entity\Articles;
 
 use Doctrine\Common\Collections\ArrayCollection;
-use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\String\Slugger\SluggerInterface;
 
 #[ORM\Entity]
+#[ORM\HasLifecycleCallbacks] // Active les événements Doctrine
 class Category
 {
     #[ORM\Id]
@@ -20,12 +22,10 @@ class Category
 
     #[ORM\Column(type: 'string', length: 255, unique: true)]
     #[Assert\NotBlank(message: "Le slug ne peut pas être vide.")]
-    private string $slug;
-
+    private ?string $slug = null; // Rend le slug nullable pour éviter l'erreur
 
     #[ORM\ManyToMany(targetEntity: Activity::class, mappedBy: 'categories')]
     private Collection $activities;
-
 
     #[ORM\ManyToMany(targetEntity: Circuit::class, mappedBy: 'categories')]
     private Collection $circuits;
@@ -52,6 +52,27 @@ class Category
         return $this;
     }
 
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    public function setSlug(?string $slug): self
+    {
+        $this->slug = $slug;
+        return $this;
+    }
+
+    #[ORM\PrePersist]
+    #[ORM\PreUpdate]
+    public function generateSlug(): void
+    {
+        if (empty($this->slug) && !empty($this->name)) {
+            $slugger = new \Symfony\Component\String\Slugger\AsciiSlugger();
+            $this->slug = $slugger->slug($this->name)->lower();
+        }
+    }
+
     public function getActivities(): Collection
     {
         return $this->activities;
@@ -61,7 +82,7 @@ class Category
     {
         if (!$this->activities->contains($activity)) {
             $this->activities->add($activity);
-            $activity->addCategory($this); // Synchronisation
+            $activity->addCategory($this);
         }
         return $this;
     }
@@ -69,7 +90,7 @@ class Category
     public function removeActivity(Activity $activity): self
     {
         if ($this->activities->removeElement($activity)) {
-            $activity->removeCategory($this); // Synchronisation
+            $activity->removeCategory($this);
         }
         return $this;
     }
@@ -83,7 +104,7 @@ class Category
     {
         if (!$this->circuits->contains($circuit)) {
             $this->circuits[] = $circuit;
-            $circuit->addCategory($this); // Many-to-Many correction
+            $circuit->addCategory($this);
         }
         return $this;
     }
@@ -91,19 +112,8 @@ class Category
     public function removeCircuit(Circuit $circuit): self
     {
         if ($this->circuits->removeElement($circuit)) {
-            $circuit->removeCategory($this); // Many-to-Many correction
+            $circuit->removeCategory($this);
         }
-        return $this;
-    }
-
-    public function getSlug(): string
-    {
-        return $this->slug;
-    }
-
-    public function setSlug(string $slug): self
-    {
-        $this->slug = $slug;
         return $this;
     }
 }

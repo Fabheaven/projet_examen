@@ -16,9 +16,9 @@ class Cart
     #[ORM\Column(type: 'integer')]
     private ?int $id = null;
 
-    #[ORM\ManyToOne(targetEntity: Cart::class, inversedBy: 'items')]
+    #[ORM\OneToOne(inversedBy: 'cart', targetEntity: User::class, cascade: ['persist', 'remove'])]
     #[ORM\JoinColumn(nullable: false)]
-    private ?Cart $cart = null;
+    private ?User $user = null;
 
     #[ORM\ManyToOne(targetEntity: Circuit::class)]
     private ?Circuit $circuit = null;
@@ -34,14 +34,14 @@ class Cart
         return $this->id;
     }
 
-    public function getCart(): ?Cart
+    public function getUser(): ?User
     {
-        return $this->cart;
+        return $this->user;
     }
 
-    public function setCart(Cart $cart): self
+    public function setUser(User $user): self
     {
-        $this->cart = $cart;
+        $this->user = $user;
         return $this;
     }
 

@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20250207224042 extends AbstractMigration
+final class Version20250212174821 extends AbstractMigration
 {
     public function getDescription(): string
     {
@@ -23,10 +23,10 @@ final class Version20250207224042 extends AbstractMigration
         $this->addSql('CREATE TABLE activity (id INT AUTO_INCREMENT NOT NULL, mediafile_id INT DEFAULT NULL, name VARCHAR(255) NOT NULL, slug VARCHAR(255) NOT NULL, description LONGTEXT DEFAULT NULL, price NUMERIC(10, 2) DEFAULT NULL, created_at DATETIME NOT NULL COMMENT \'(DC2Type:datetime_immutable)\', updated_at DATETIME NOT NULL COMMENT \'(DC2Type:datetime_immutable)\', state VARCHAR(255) NOT NULL, UNIQUE INDEX UNIQ_AC74095A989D9B62 (slug), UNIQUE INDEX UNIQ_AC74095AD6810431 (mediafile_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE activity_user (activity_id INT NOT NULL, user_id CHAR(36) NOT NULL COMMENT \'(DC2Type:uuid)\', INDEX IDX_8E570DDB81C06096 (activity_id), INDEX IDX_8E570DDBA76ED395 (user_id), PRIMARY KEY(activity_id, user_id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE activity_category (activity_id INT NOT NULL, category_id INT NOT NULL, INDEX IDX_A646A9CF81C06096 (activity_id), INDEX IDX_A646A9CF12469DE2 (category_id), PRIMARY KEY(activity_id, category_id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
-        $this->addSql('CREATE TABLE cart (id INT AUTO_INCREMENT NOT NULL, cart_id INT NOT NULL, circuit_id INT DEFAULT NULL, activity_id INT DEFAULT NULL, quantity INT NOT NULL, INDEX IDX_BA388B71AD5CDBF (cart_id), INDEX IDX_BA388B7CF2182C8 (circuit_id), INDEX IDX_BA388B781C06096 (activity_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
+        $this->addSql('CREATE TABLE cart (id INT AUTO_INCREMENT NOT NULL, user_id CHAR(36) NOT NULL COMMENT \'(DC2Type:uuid)\', circuit_id INT DEFAULT NULL, activity_id INT DEFAULT NULL, quantity INT NOT NULL, UNIQUE INDEX UNIQ_BA388B7A76ED395 (user_id), INDEX IDX_BA388B7CF2182C8 (circuit_id), INDEX IDX_BA388B781C06096 (activity_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE cart_item (id INT AUTO_INCREMENT NOT NULL, cart_id INT NOT NULL, item_type VARCHAR(255) NOT NULL, item_id INT NOT NULL, quantity INT NOT NULL, INDEX IDX_F0FE25271AD5CDBF (cart_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE categories (id INT AUTO_INCREMENT NOT NULL, name VARCHAR(255) NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
-        $this->addSql('CREATE TABLE category (id INT AUTO_INCREMENT NOT NULL, name VARCHAR(255) NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
+        $this->addSql('CREATE TABLE category (id INT AUTO_INCREMENT NOT NULL, name VARCHAR(255) NOT NULL, slug VARCHAR(255) NOT NULL, UNIQUE INDEX UNIQ_64C19C1989D9B62 (slug), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE circuit (id INT AUTO_INCREMENT NOT NULL, mediafile_id INT DEFAULT NULL, name VARCHAR(255) NOT NULL, slug VARCHAR(255) NOT NULL, description LONGTEXT NOT NULL, price NUMERIC(10, 2) NOT NULL, duration INT NOT NULL, availability TINYINT(1) NOT NULL, created_at DATETIME NOT NULL COMMENT \'(DC2Type:datetime_immutable)\', updated_at DATETIME NOT NULL COMMENT \'(DC2Type:datetime_immutable)\', state VARCHAR(255) NOT NULL, UNIQUE INDEX UNIQ_1325F3A6989D9B62 (slug), UNIQUE INDEX UNIQ_1325F3A6D6810431 (mediafile_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE circuit_user (circuit_id INT NOT NULL, user_id CHAR(36) NOT NULL COMMENT \'(DC2Type:uuid)\', INDEX IDX_E46BB0B4CF2182C8 (circuit_id), INDEX IDX_E46BB0B4A76ED395 (user_id), PRIMARY KEY(circuit_id, user_id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE circuit_category (circuit_id INT NOT NULL, category_id INT NOT NULL, INDEX IDX_D611D260CF2182C8 (circuit_id), INDEX IDX_D611D26012469DE2 (category_id), PRIMARY KEY(circuit_id, category_id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
@@ -49,7 +49,7 @@ final class Version20250207224042 extends AbstractMigration
         $this->addSql('ALTER TABLE activity_user ADD CONSTRAINT FK_8E570DDBA76ED395 FOREIGN KEY (user_id) REFERENCES user (id) ON DELETE CASCADE');
         $this->addSql('ALTER TABLE activity_category ADD CONSTRAINT FK_A646A9CF81C06096 FOREIGN KEY (activity_id) REFERENCES activity (id) ON DELETE CASCADE');
         $this->addSql('ALTER TABLE activity_category ADD CONSTRAINT FK_A646A9CF12469DE2 FOREIGN KEY (category_id) REFERENCES category (id) ON DELETE CASCADE');
-        $this->addSql('ALTER TABLE cart ADD CONSTRAINT FK_BA388B71AD5CDBF FOREIGN KEY (cart_id) REFERENCES cart (id)');
+        $this->addSql('ALTER TABLE cart ADD CONSTRAINT FK_BA388B7A76ED395 FOREIGN KEY (user_id) REFERENCES user (id)');
         $this->addSql('ALTER TABLE cart ADD CONSTRAINT FK_BA388B7CF2182C8 FOREIGN KEY (circuit_id) REFERENCES circuit (id)');
         $this->addSql('ALTER TABLE cart ADD CONSTRAINT FK_BA388B781C06096 FOREIGN KEY (activity_id) REFERENCES activity (id)');
         $this->addSql('ALTER TABLE cart_item ADD CONSTRAINT FK_F0FE25271AD5CDBF FOREIGN KEY (cart_id) REFERENCES cart (id)');
@@ -84,7 +84,7 @@ final class Version20250207224042 extends AbstractMigration
         $this->addSql('ALTER TABLE activity_user DROP FOREIGN KEY FK_8E570DDBA76ED395');
         $this->addSql('ALTER TABLE activity_category DROP FOREIGN KEY FK_A646A9CF81C06096');
         $this->addSql('ALTER TABLE activity_category DROP FOREIGN KEY FK_A646A9CF12469DE2');
-        $this->addSql('ALTER TABLE cart DROP FOREIGN KEY FK_BA388B71AD5CDBF');
+        $this->addSql('ALTER TABLE cart DROP FOREIGN KEY FK_BA388B7A76ED395');
         $this->addSql('ALTER TABLE cart DROP FOREIGN KEY FK_BA388B7CF2182C8');
         $this->addSql('ALTER TABLE cart DROP FOREIGN KEY FK_BA388B781C06096');
         $this->addSql('ALTER TABLE cart_item DROP FOREIGN KEY FK_F0FE25271AD5CDBF');
@@ -132,5 +132,6 @@ final class Version20250207224042 extends AbstractMigration
         $this->addSql('DROP TABLE wishlist');
         $this->addSql('DROP TABLE wishlist_activity');
         $this->addSql('DROP TABLE wishlist_circuit');
+        $this->addSql('DROP TABLE messenger_messages');
     }
 }

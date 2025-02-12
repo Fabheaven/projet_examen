@@ -21,6 +21,7 @@ class CategoryFixtures extends Fixture
         foreach ($categoriesActivites as $index => $cat) {
             $categorie = new Category();
             $categorie->setName($cat);
+            $categorie->generateSlug(); // Génération du slug avant de persister
             $manager->persist($categorie);
             $this->addReference('category_activities_' . $index, $categorie);
         }
@@ -29,6 +30,7 @@ class CategoryFixtures extends Fixture
         foreach ($categoriesCircuits as $index => $cat) {
             $categorie = new Category();
             $categorie->setName($cat);
+            $categorie->generateSlug(); // Génération du slug avant de persister
             $manager->persist($categorie);
             $this->addReference('category_circuits_' . $index, $categorie);
         }

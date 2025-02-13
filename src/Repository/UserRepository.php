@@ -15,4 +15,21 @@ class UserRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, User::class);
     }
+
+    /** Fonction save pour enregistrer les users dans la BD */
+    public function save(User $user, ?bool $flush = true): User {
+        $this->getEntityManager()->persist($user);
+        if ($flush) {
+            $this->getEntityManager()->flush();
+        }
+        return $user;
+    }
+
+    /** Fonction remove pour supprimer un user */
+    public function remove(User $user, ?bool $flush = true): void {
+        $this->getEntityManager()->remove($user);
+        if ($flush) {
+            $this->getEntityManager()->flush();
+        }
+    }
 }

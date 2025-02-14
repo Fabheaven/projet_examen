@@ -10,6 +10,7 @@ import {
   } from "tw-elements";
   
   initTWE({ Input, Ripple });
+  alert("bonjour  js")
 
 
   

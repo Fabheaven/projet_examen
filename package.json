@@ -27,6 +27,6 @@
         "@types/react": "^19.0.1",
         "@types/react-dom": "^19.0.2",
         "react-router-dom": "^7.0.2",
-        "tw-elements": "^1.1.0"
+        "tw-elements": "^2.0.0"
     }
 }

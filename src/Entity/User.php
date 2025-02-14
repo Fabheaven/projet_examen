@@ -17,18 +17,20 @@ use App\Entity\Articles\Activity;
 use App\Entity\Articles\Circuit;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
-#[UniqueEntity(fields: ['email'], message: 'Cet email existe déjà au sein de l\'application.')]
+#[UniqueEntity(fields: ['email'], message: "Cet email est déjà utilisé dans le système.")]
 #[ORM\HasLifecycleCallbacks]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
-    #[ORM\Column(type: 'uuid', unique: true)]
-    #[ORM\GeneratedValue(strategy: 'CUSTOM')]
-    #[ORM\CustomIdGenerator(class: UuidGenerator::class)]
+    #[ORM\Column(type: 'string', length: 36, unique: true)]
+    #[ORM\GeneratedValue(strategy: 'NONE')]
     private ?string $id = null;
 
     #[ORM\Column(type: 'string', length: 10, nullable: true)]
     private ?string $userInitial = null;
+
+    #[ORM\Column(type: 'boolean')]
+    private bool $isVerified = false;
 
 
     #[ORM\Column(type: 'string', length: 150, unique: true)]
@@ -83,6 +85,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function __construct()
     {
+        $this->id = Uuid::uuid4()->toString(); 
         $this->createdAt = new \DateTimeImmutable();
         $this->updatedAt = new \DateTimeImmutable();
         $this->activities = new ArrayCollection();
@@ -112,7 +115,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function getId(): ?string
     {
-        return $this->id ? Uuid::fromBytes($this->id)->toString() : null;
+        return $this->id;
     }
 
     public function getEmail(): string
@@ -296,5 +299,19 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->userInitial = $userInitial;
 
         return $this;
+    }
+
+
+    public function getIsVerified():  bool
+    {
+        return $this->isVerified;
+    }
+
+
+    public function setIsVerified(bool $isVerified):self
+    {
+        $this->isVerified = $isVerified;
+
+    return $this;
     }
 }

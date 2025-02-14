@@ -4,29 +4,31 @@ namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route; // Correction pour la bonne annotation Route
+use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class SecurityController extends AbstractController
 {
-    #[Route('/connexion', name: 'security.login', methods: ['GET', 'POST'])]
+    #[Route(path: '/login', name: 'app_login')]
     public function login(AuthenticationUtils $authenticationUtils): Response
     {
-        // Récupérer les erreurs lors des tentatives de connexion
-        $error = $authenticationUtils->getLastAuthenticationError();
 
-        // Récupérer le dernier nom d'utilisateur saisi par l'utilisateur
+       
+        // if ($this->getUser()) {
+        //     return $this->redirectToRoute('target_path');
+        // }
+
+        // get the login error if there is one
+        $error = $authenticationUtils->getLastAuthenticationError();
+        // last username entered by the user
         $lastUsername = $authenticationUtils->getLastUsername();
 
-        return $this->render('pages/security/login.html.twig', [
-            'error' => $error,
-            'last_username' => $lastUsername, // Pour pré-remplir le champ du formulaire si nécessaire
-        ]);
+        return $this->render('pages/security/login.html.twig', ['last_username' => $lastUsername, 'error' => $error]);
     }
 
-    #[Route('/deconnexion', name: 'security.logout', methods: ['GET'])]
+    #[Route(path: '/logout', name: 'app_logout')]
     public function logout(): void
     {
-
+        
     }
 }

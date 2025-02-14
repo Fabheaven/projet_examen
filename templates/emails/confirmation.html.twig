@@ -1,0 +1,17 @@
+<h1>Activation de votre compte sur Diosso Tourisme</h1>
+
+<p>Bonjour {{ user.lastName }}</p>
+
+<p>Pour activer votre compte sur Diosso Tourisme, veuillez cliquer sur le lien ci-dessous :</p>
+
+<p>
+    <a href="{{ absolute_url(path('check_user', {token: token})) }}">
+        Activer mon compte
+    </a>
+</p>
+
+<p>Si le lien ne fonctionne pas, vous pouvez copier et coller l'URL suivante dans votre navigateur :</p>
+
+<p>{{ absolute_url(path('check_user', {token: token})) }}</p>
+
+<p>Merci</p>

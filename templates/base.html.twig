@@ -9,19 +9,22 @@
         {% endblock %}
 
         {% block javascripts %}
-    {{ encore_entry_script_tags('app') }}
-    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
-    {% endblock %}
-
+            {{ encore_entry_script_tags('app') }}
+            <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+        {% endblock %}
     </head>
     <body>
         {% include "partials/header.html.twig" %}
-        {#% include "partials/carousel.html.twig" %<#}
+
+        {% if app.request.attributes.get('_route') == 'app_home' %}
+            {% include "partials/carousel.html.twig" %}
+        {% endif %}
+
         {% for type, messages in app.flashes %}
-    {% for message in messages %}
-        <p>{{ message | raw }}</p>
-    {% endfor %}
-{% endfor %}
+            {% for message in messages %}
+                <p>{{ message | raw }}</p>
+            {% endfor %}
+        {% endfor %}
 
         {% block body %}{% endblock %}
         {% include "partials/footer.html.twig" %}

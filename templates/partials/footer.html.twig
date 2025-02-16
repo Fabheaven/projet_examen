@@ -97,7 +97,10 @@
                 d="M22.5 6.908V6.75a3 3 0 00-3-3h-15a3 3 0 00-3 3v.158l9.714 5.978a1.5 1.5 0 001.572 0L22.5 6.908z" />
             </svg>
           </span>
-          info@diossotourisme.com
+          <a href="{{ path('app_contact') }}" class="px-2 py-1 rounded hover:text-primary transition">
+  info@diossotourisme.com
+</a>
+
         </p>
         <p class="mb-4 flex items-center justify-center md:justify-start">
           <span class="me-3 [&>svg]:h-5 [&>svg]:w-5">
@@ -146,13 +149,15 @@
       </div>
 
       <div class="mb-6 md:me-auto">
-        <button
+        <a href="{{ path('app_newsletter')}}">
+          <button
           type="button"
           class="inline-block rounded bg-primary px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-primary-3 transition duration-150 ease-in-out hover:bg-primary-accent-300 hover:shadow-primary-2 focus:bg-primary-accent-300 focus:shadow-primary-2 focus:outline-none focus:ring-0 active:bg-primary-600 active:shadow-primary-2 dark:shadow-black/30 dark:hover:shadow-dark-strong dark:focus:shadow-dark-strong dark:active:shadow-dark-strong"
           data-twe-ripple-init
           data-twe-ripple-color="light">
           S'abonner
-        </button>
+          </button>
+        </a>
       </div>
     </div>
   </form>

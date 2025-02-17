@@ -3,24 +3,24 @@ import "../styles/app.css"; // Import du CSS
 import * as te from "tw-elements"; // Importer TOUT tw-elements
 
 // Sélection des éléments
-const loginButton = document.querySelector('#user-menu-button'); // Cibler le bouton directement
-const menuButton = document.querySelector('.menu-button'); // Correction du nom de classe
+const loginButton = document.querySelector('.login-button');
+const menuButton = document.querySelector('.menu-boutton');
 
 if (loginButton && menuButton) {
-    // Ajout d'un écouteur d’événement au clic
-    loginButton.addEventListener('click', (event) => {
-        event.stopPropagation(); // Empêche le clic de se propager au document
-        menuButton.classList.toggle('hidden'); // Toggle l'affichage du menu
-    });
-
-    // Ajout d'un écouteur d’événement global pour fermer si on clique ailleurs
-    document.addEventListener('click', (event) => {
-        if (!menuButton.contains(event.target) && !loginButton.contains(event.target)) {
-            menuButton.classList.add('hidden');
-        }
-    });
+  // Ajout d'un écouteur d’événement au clic
+  loginButton.addEventListener('click', (event) => {
+    event.stopPropagation(); // Empêche le clic de se propager au document
+    menuButton.classList.toggle('hidden'); // Utilisation de Tailwind 'hidden' au lieu de 'active'
+  });
+  
+  // Ajout d'un écouteur d’événement global pour détecter les clics hors div
+  document.addEventListener('click', (event) => {
+    if (!menuButton.contains(event.target) && !loginButton.contains(event.target)) {
+      menuButton.classList.add('hidden');
+    }
+  });
+  
 }
-
 
 // menu-burger
 const burgerButton = document.querySelector('.burger-button');

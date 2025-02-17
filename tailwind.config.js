@@ -6,7 +6,11 @@ module.exports = {
     './node_modules/tw-elements/js/**/*.js',  // Nouveau chemin pour tw-elements v2
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        'custom-blue': '#3b71ca',
+      },
+    },
   },
   plugins: [
     require('tw-elements/plugin'), // Nouveau chemin pour le plugin

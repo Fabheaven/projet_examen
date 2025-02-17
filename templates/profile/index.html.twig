@@ -1,0 +1,76 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mon Profil{% endblock %}
+
+{% block body %}
+<div class="container mx-auto px-4 py-8 mt-16"> <!-- Ajout d'une marge supplémentaire en haut ici avec mt-16 -->
+    <h1 class="text-3xl font-semibold mb-6">Mon Profil</h1>
+
+    <div class="md:flex no-wrap md:-mx-2 ">
+        <!-- Left Side -->
+        <div class="w-full md:w-3/12 md:mx-2">
+            <!-- Profile Card -->
+            <div class="bg-white p-3 border-t-4 border-green-400">
+                <div class="image overflow-hidden">
+                    <div class="h-24 w-24 bg-custom-blue text-white rounded-full flex items-center justify-center mx-auto">
+                        {{ app.user.firstName|slice(0, 1)|upper }}{{ app.user.lastName|slice(0, 1)|upper }}
+                    </div>
+                </div>
+
+                <h1 class="text-gray-900 font-bold text-xl leading-8 my-1">{{ app.user.firstName }} {{ app.user.lastName }}</h1>
+                
+                <p class="text-sm text-gray-500 hover:text-gray-600 leading-6">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit, eligendi dolorum sequi illum qui unde aspernatur non deserunt.</p>
+                <ul class="bg-gray-100 text-gray-600 hover:text-gray-700 hover:shadow py-2 px-3 mt-3 divide-y rounded shadow-sm">
+                    <li class="flex items-center py-3">
+                        <span>Status</span>
+                        <span class="ml-auto"><span class="bg-green-500 py-1 px-2 rounded text-white text-sm">Active</span></span>
+                    </li>
+                    <li class="flex items-center py-3">
+                        <span>Membre depuis</span>
+                        <span class="ml-auto">{{ app.user.createdAt|date('d M Y') }}</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Right Side -->
+        <div class="w-full md:w-9/12 md:mx-2">
+            <div class="max-w-3xl mx-auto bg-white shadow-lg rounded-lg p-6">
+                <h2 class="text-2xl font-semibold mb-4">Mes Informations</h2>
+
+                {{ form_start(form) }}
+                
+                <div class="mb-4">
+                    <label for="firstName" class="block text-sm font-medium text-gray-700"></label>
+                    {{ form_row(form.first_name, {'attr': {'class': 'mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500'}}) }}
+                </div>
+
+                <div class="mb-4">
+                    <label for="lastName" class="block text-sm font-medium text-gray-700"></label>
+                    {{ form_row(form.last_name, {'attr': {'class': 'mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500'}}) }}
+                </div>
+
+                <div class="mb-4">
+                    <label for="phone" class="block text-sm font-medium text-gray-700"></label>
+                    {{ form_row(form.phone, {'attr': {'class': 'mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500'}}) }}
+                </div>
+
+                <div class="mb-6">
+                    <label for="address" class="block text-sm font-medium text-gray-700"></label>
+                    {{ form_row(form.address, {'attr': {'class': 'mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500'}}) }}
+                </div>
+
+                <div class="flex justify-end">
+                    {{ form_row(form.submit, {
+                        'attr': {
+                            'class': 'bg-custom-blue hover:bg-indigo-700 text-white py-2 px-6 rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-indigo-500'
+                        }
+                    }) }}
+                </div>
+
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

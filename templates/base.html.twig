@@ -27,6 +27,9 @@
         {% endfor %}
 
         {% block body %}{% endblock %}
+        {% if app.request.attributes.get('_route') == 'app_home' %}
+            {% include "partials/testimonial.html.twig" %}
+        {% endif %}
         {% include "partials/footer.html.twig" %}
     </body>
 </html>

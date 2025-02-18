@@ -18,6 +18,10 @@ class ContactType extends AbstractType
     {
         $builder
             ->add('first_name', TextType::class, [
+                'label' => 'Prénom',
+                'label_attr' => [
+                    'class' => 'form-label mt-4',
+                ],
                 'constraints' => [
                     new Assert\NotBlank(['message' => 'Veuillez saisir un prénom']),
                     new Assert\Length([
@@ -29,6 +33,10 @@ class ContactType extends AbstractType
                 ],
             ])
             ->add('last_name', TextType::class, [
+                'label' => 'Nom',
+                'label_attr' => [
+                    'class' => 'form-label mt-4',
+                ],
                 'constraints' => [
                     new Assert\NotBlank(['message' => 'Veuillez saisir un nom']),
                     new Assert\Length([
@@ -40,6 +48,10 @@ class ContactType extends AbstractType
                 ],
             ])
             ->add('email', EmailType::class, [
+                'label' => 'E-mail',
+                'label_attr' => [
+                    'class' => 'form-label mt-4',
+                ],
                 'constraints' => [
                     new Assert\NotBlank(['message' => 'Veuillez saisir un e-mail']),
                     new Assert\Email(['message' => 'Veuillez saisir un e-mail valide']),
@@ -50,14 +62,13 @@ class ContactType extends AbstractType
                 ],
             ])
             ->add('subject', TextType::class, [
-                'attr' => [
-                    'class' => 'form-control',
-                    'minlength' => '2',
-                    'maxlength' => '100',
-                ],
                 'label' => "Sujet",
                 'label_attr' => [
                     'class' => 'form-label mt-4',
+                ],
+                'attr' => [
+                    'minlength' => '2',
+                    'maxlength' => '100',
                 ],
                 'constraints' => [
                     new Assert\Length([
@@ -69,10 +80,7 @@ class ContactType extends AbstractType
                 ],
             ])
             ->add('message', TextareaType::class, [
-                'attr' => [
-                    'class' => 'form-control',
-                ],
-                'label' => "Description",
+                'label' => "Votre message",
                 'label_attr' => [
                     'class' => 'form-label mt-4',
                 ],
@@ -80,8 +88,6 @@ class ContactType extends AbstractType
                     new Assert\NotBlank(['message' => 'Veuillez saisir un message.']),
                 ],
             ])
-            
-           
             ->add('submit', SubmitType::class, [
                 'label' => 'Envoyer',
                 'attr' => [
@@ -97,4 +103,3 @@ class ContactType extends AbstractType
         ]);
     }
 }
-

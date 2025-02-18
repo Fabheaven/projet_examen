@@ -32,6 +32,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'boolean')]
     private bool $isVerified = false;
 
+    #[ORM\OneToMany(targetEntity: Contact::class, mappedBy: 'user')]
+    private Collection $contacts;
 
     #[ORM\Column(type: 'string', length: 150, unique: true)]
     #[Assert\NotBlank(message: 'L\'email est obligatoire.')]
@@ -86,6 +88,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function __construct()
     {
         $this->id = Uuid::uuid4()->toString(); 
+        $this->contacts = new ArrayCollection();
         $this->createdAt = new \DateTimeImmutable();
         $this->updatedAt = new \DateTimeImmutable();
         $this->activities = new ArrayCollection();
@@ -313,5 +316,29 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->isVerified = $isVerified;
 
     return $this;
+    }
+
+    public function getContacts(): Collection
+    {
+        return $this->contacts;
+    }
+
+    public function addContact(Contact $contact): self
+    {
+        if (!$this->contacts->contains($contact)) {
+            $this->contacts[] = $contact;
+            $contact->setUser($this);
+        }
+        return $this;
+    }
+
+    public function removeContact(Contact $contact): self
+    {
+        if ($this->contacts->removeElement($contact)) {
+            if ($contact->getUser() === $this) {
+                $contact->setUser(null);
+            }
+        }
+        return $this;
     }
 }

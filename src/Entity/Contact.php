@@ -23,6 +23,10 @@ class Contact
     #[Assert\Length(min: 2, max: 50)]
     private ?string $last_name;
 
+    #[ORM\ManyToOne(targetEntity: User::class)]
+    #[ORM\JoinColumn(nullable: true)] 
+    private ?User $user = null;
+
     #[ORM\Column(length: 150)]
     #[Assert\Email(message: "L'adresse email n'est pas valide.")]
     #[Assert\Regex(
@@ -84,6 +88,17 @@ class Contact
     public function getEmail(): ?string
     {
         return $this->email;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): static
+    {
+        $this->user = $user;
+        return $this;
     }
 
     public function setEmail(string $email): static

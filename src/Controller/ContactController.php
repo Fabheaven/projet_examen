@@ -1,6 +1,7 @@
 <?php
 namespace App\Controller;
 
+use App\Entity\User;
 use App\Entity\Contact;
 use App\Form\ContactType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -17,12 +18,15 @@ class ContactController extends AbstractController
     {
         $contact = new Contact();
 
-        // Pré-remplir les informations utilisateur si l'utilisateur est connecté
-        if ($this->getUser()) {
-            $contact->setFirstName($this->getUser()->getFirstName())
-                ->setLastName($this->getUser()->getLastName())
-                ->setEmail($this->getUser()->getEmail());
-        }
+    // Pré-remplir les informations utilisateur si l'utilisateur est connecté
+     /** @var User $user */
+     $user = $this->getUser();
+     if ($user) {
+         $contact->setFirstName($user->getFirstName())
+                 ->setLastName($user->getLastName())
+                 ->setEmail($user->getEmail())
+                 ->setUser($user); // Associer l'utilisateur connecté
+     }
 
         $form = $this->createForm(ContactType::class, $contact);
 

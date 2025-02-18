@@ -22,6 +22,45 @@ if (loginButton && menuButton) {
   
 }
 
+
+//Script pour l'indicateur de sécurité du mot de passe
+		document.addEventListener("DOMContentLoaded", function () {
+			const passwordInput = document.getElementById("password");
+			const strengthBar = document.getElementById("password-strength-bar");
+			const strengthText = document.getElementById("password-strength-text");
+
+			passwordInput.addEventListener("input", function () {
+				const password = passwordInput.value;
+				const strength = getPasswordStrength(password);
+
+				// Définition des couleurs et messages selon la force du mot de passe
+				const strengthLevels = [
+					{ text: "Très faible", color: "bg-red-500 w-1/5" },
+					{ text: "Faible", color: "bg-orange-500 w-2/5" },
+					{ text: "Moyen", color: "bg-yellow-500 w-3/5" },
+					{ text: "Fort", color: "bg-green-500 w-4/5" },
+					{ text: "Très fort", color: "bg-blue-600 w-full" }
+				];
+
+				strengthBar.className = `h-2.5 rounded-full transition-all duration-300 ${strengthLevels[strength].color}`;
+				strengthText.textContent = strengthLevels[strength].text;
+				strengthText.className = `text-sm mt-1 font-medium ${strengthLevels[strength].color.replace('bg-', 'text-')}`;
+			});
+
+			// Fonction pour évaluer la force du mot de passe
+			function getPasswordStrength(password) {
+				let score = 0;
+				if (password.length >= 8) score++;
+				if (/[a-z]/.test(password)) score++;
+				if (/[A-Z]/.test(password)) score++;
+				if (/\d/.test(password)) score++;
+				if (/[\W_]/.test(password)) score++;
+				return score;
+			}
+		});
+
+
+
 // menu-burger
 const burgerButton = document.querySelector('.burger-button');
 const menuMobile = document.querySelector('.menu-mobile');

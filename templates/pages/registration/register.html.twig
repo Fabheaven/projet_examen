@@ -39,7 +39,15 @@
 				<!-- Mot de passe -->
 				<div class="mb-4">
 					<label for="{{ registrationForm.password.first.vars.id }}" class="block text-sm font-medium text-gray-700">Mot de passe</label>
-					{{ form_widget(registrationForm.password.first, { 'attr': { 'class': 'form-control block w-full px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded focus:ring-blue-500 focus:border-blue-500' } }) }}
+					{{ form_widget(registrationForm.password.first, { 'attr': { 'class': 'form-control block w-full px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded focus:ring-blue-500 focus:border-blue-500', 'id': 'password' } }) }}
+
+					<!-- Indicateur de sécurité -->
+					<div class="relative mt-2">
+						<div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
+							<div id="password-strength-bar" class="h-2.5 rounded-full transition-all duration-300"></div>
+						</div>
+						<p id="password-strength-text" class="text-sm mt-1"></p>
+					</div>
 				</div>
 
 				<!-- Confirmation du mot de passe -->

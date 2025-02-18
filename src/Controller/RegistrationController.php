@@ -8,7 +8,6 @@ use App\Repository\UserRepository;
 use App\Security\UserAuthenticator;
 use App\Service\JWTService;
 use App\Service\MailerService;
-use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Bundle\SecurityBundle\Security;

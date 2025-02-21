@@ -58,9 +58,8 @@ class RegistrationController extends AbstractController
 
             $this->addFlash("success", "🎉 Félicitations ! Votre inscription est réussie. Pour activer votre compte, veuillez cliquer sur le lien de confirmation envoyé à votre adresse e-mail. 📩✨");
 
-
-            // Connecter l'utilisateur automatiquement après l'inscription
-            return $security->login($user, UserAuthenticator::class, 'main');
+            // Rediriger l'utilisateur vers la page d'accueil
+            return $this->redirectToRoute('app_home');
         }
 
         // Afficher le formulaire d'inscription

@@ -22,5 +22,10 @@ services:
             - '../src/Entity/'
             - '../src/Kernel.php'
 
+    # Configuration explicite pour UserAuthenticator
+    App\Security\UserAuthenticator:
+        arguments:
+            $userRepository: '@App\Repository\UserRepository'
+
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones

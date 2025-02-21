@@ -8,399 +8,570 @@
 
 {% block body %}
 
-<section class="under-hero">
-   <div class="container">
-        <ul>
-            <li><a href="#" class="active">Congo Brazzaville</a></li>
-            <li><a href="#">Que voir, que faire?</a></li>
-            <li><a href="#">Quand partir?</a></li>
-            <li><a href="#">Découvrir</a></li>
-            <li><a href="#">Voyager</a></li>
-            <li><a href="#">Photos</a></li>
+<!-- First navbar -->
+
+<div
+  class="relative flex w-full flex-nowrap items-center justify-between bg-primary py-2 shadow-dark-mild lg:flex-wrap lg:justify-start lg:py-4"
+  data-twe-navbar-ref>
+    <div class="flex w-full flex-wrap items-center justify-between px-3">
+        <ul class="container list-style-none me-auto flex justify-between flex-col ps-0 lg:mt-1 lg:flex-row" data-twe-navbar-nav-ref>
+            <li class="my-4 ps-2 lg:my-0 lg:pe-1 lg:ps-2" data-twe-nav-item-ref>
+                <a class="text-neutral-300 transition duration-200 hover:text-neutral-200 hover:ease-in-out focus:text-neutral-200 active:text-black/80 motion-reduce:transition-none lg:px-2"
+                aria-current="page" href="#" class="active">Congo Brazzaville</a>
+            </li>
+       
+            <li class="mb-4 ps-2 lg:mb-0 lg:pe-1 lg:ps-0" data-twe-nav-item-ref>
+                <a
+                    class="p-0 text-neutral-300 transition duration-200 hover:text-neutral-200 hover:ease-in-out focus:text-neutral-200 active:text-black/80 motion-reduce:transition-none lg:px-2"
+                    href="#" data-twe-nav-link-ref>Que voir, que faire?</a>
+            </li>
+      
+            <li class="mb-4 ps-2 lg:mb-0 lg:pe-1 lg:ps-0" data-twe-nav-item-ref>
+                <a
+                    class="p-0 text-neutral-300 transition duration-200 hover:text-neutral-200 hover:ease-in-out focus:text-neutral-200 active:text-black/80 motion-reduce:transition-none lg:px-2"
+                    href="#" data-twe-nav-link-ref>Quand partir?</a>
+            </li>
+        
+            <li class="mb-4 ps-2 lg:mb-0 lg:pe-1 lg:ps-0"data-twe-nav-item-ref>
+                <a
+                    class="p-0 text-neutral-300 transition duration-200 hover:text-neutral-200 hover:ease-in-out focus:text-neutral-200 active:text-black/80 motion-reduce:transition-none lg:px-2"
+                    href="#"data-twe-nav-link-ref>Découvrir</a>
+            </li>
+
+            <li class="mb-4 ps-2 lg:mb-0 lg:pe-1 lg:ps-0"data-twe-nav-item-ref>
+                <a
+                    class="p-0 text-neutral-300 transition duration-200 hover:text-neutral-200 hover:ease-in-out focus:text-neutral-200 active:text-black/80 motion-reduce:transition-none lg:px-2"
+                    href="#"data-twe-nav-link-ref>Voyager</a>
+            </li>
+
+            <li class="mb-4 ps-2 lg:mb-0 lg:pe-1 lg:ps-0"data-twe-nav-item-ref>
+                <a
+                    class="p-0 text-neutral-300 transition duration-200 hover:text-neutral-200 hover:ease-in-out focus:text-neutral-200 active:text-black/80 motion-reduce:transition-none lg:px-2"
+                    href="#"data-twe-nav-link-ref>Photos</a>
+            </li>
         </ul>
+    </div>
+</div>
+
+<!-- Section "Destinations Populaires"  -->
+<section class="py-10" id="services">
+    <div class="container mx-auto px-4">
+    <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">
+        Nos Destinations Populaires
+    </h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <!-- Centering wrapper -->
+        <div class="relative flex flex-col mt-6 text-gray-700 bg-white shadow-md bg-clip-border 
+                    rounded-xl w-full sm:w-96 mx-auto">
+            <div class="relative h-56 mx-4 -mt-6 overflow-hidden text-white shadow-lg bg-clip-border 
+                        rounded-xl bg-blue-gray-500 shadow-blue-gray-500/40"> 
+                        <img src="/img/images/fleuve.jpg" alt="card-image"/></div>
+                    <div class="p-6">
+                    <h5 class="block mb-2 font-sans text-xl antialiased font-semibold leading-snug tracking-normal text-blue-gray-900">
+                        FLEUVE KIOULOU</h5>
+                    <p class="block font-sans text-base antialiased font-light leading-relaxed text-inherit">
+                        The place is close to Barceloneta Beach and bus stop just 2 min by walk and near to "Naviglio"
+                        where you can enjoy the main night life in Barcelona.</p>
+                </div>
+                <div class="p-6 pt-0">
+                    <button  class="align-middle select-none font-sans font-bold text-center uppercase transition-all disabled:opacity-50
+                        disabled:shadow-none disabled:pointer-events-none text-xs py-3 px-6 rounded-lg bg-gray-900 text-white shadow-md shadow-gray-900/10 hover:shadow-lg hover:shadow-gray-900/20 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none"
+                        type="button">
+                        En savoir plus
+                    </button>
+                </div>
+            </div>
+
+            <!-- Centering wrapper -->
+            <div class="relative flex flex-col mt-6 text-gray-700 bg-white shadow-md bg-clip-border 
+                    rounded-xl w-full sm:w-96 mx-auto">
+                <div class="relative h-56 mx-4 -mt-6 overflow-hidden text-white shadow-lg bg-clip-border 
+                        rounded-xl bg-blue-gray-500 shadow-blue-gray-500/40">
+                    <img src="/img/images/fleuve-sel.jpg" alt="card-image"/></div>
+                    <div class="p-6">
+                    <h5 class="block mb-2 font-sans text-xl antialiased font-semibold leading-snug tracking-normal text-blue-gray-900">
+                        FLEUVE DE SEL</h5>
+                    <p class="block font-sans text-base antialiased font-light leading-relaxed text-inherit">
+                        The place is close to Barceloneta Beach and bus stop just 2 min by walk and near to "Naviglio"
+                        where you can enjoy the main night life in Barcelona.</p>
+                </div>
+                <div class="p-6 pt-0">
+                    <button  class="align-middle select-none font-sans font-bold text-center uppercase transition-all disabled:opacity-50
+                        disabled:shadow-none disabled:pointer-events-none text-xs py-3 px-6 rounded-lg bg-gray-900 text-white shadow-md shadow-gray-900/10 hover:shadow-lg hover:shadow-gray-900/20 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none"
+                        type="button">
+                        En savoir plus
+                    </button>
+                </div>
+            </div>
+
+            <!-- Centering wrapper -->
+            <div class="relative flex flex-col mt-6 text-gray-700 bg-white shadow-md bg-clip-border 
+                    rounded-xl w-full sm:w-96 mx-auto">
+            <div class="relative h-56 mx-4 -mt-6 overflow-hidden text-white shadow-lg bg-clip-border 
+                        rounded-xl bg-blue-gray-500 shadow-blue-gray-500/40">
+                    <img src="/img/images/mangrove.jpg" alt="card-image"/></div>
+                    <div class="p-6">
+                    <h5 class="block mb-2 font-sans text-xl antialiased font-semibold leading-snug tracking-normal text-blue-gray-900">
+                        BAS-KIOULLOU  MANGROVE</h5>
+                    <p class="block font-sans text-base antialiased font-light leading-relaxed text-inherit">
+                        The place is close to Barceloneta Beach and bus stop just 2 min by walk and near to "Naviglio"
+                        where you can enjoy the main night life in Barcelona.</p>
+                </div>
+                <div class="p-6 pt-0">
+                    <button  class="align-middle select-none font-sans font-bold text-center uppercase transition-all disabled:opacity-50
+                        disabled:shadow-none disabled:pointer-events-none text-xs py-3 px-6 rounded-lg bg-gray-900 text-white shadow-md shadow-gray-900/10 hover:shadow-lg hover:shadow-gray-900/20 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none"
+                        type="button">
+                        En savoir plus
+                    </button>
+                </div>
+            </div>
+        </div>
+           <button type="button" class="mt-4 inline-block rounded bg-primary-accent-200 px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal 
+                text-primary-700 transition duration-150 ease-in-out hover:bg-primary-accent-200 focus:bg-primary-accent-200 
+                focus:outline-none focus:ring-0 active:bg-primary-accent-200 motion-reduce:transition-none dark:bg-primary-400 
+                dark:hover:bg-primary-400 dark:focus:bg-primary-400 dark:active:bg-primary-400">
+                Voir plus de destinations
+            </button>
+
     </div> 
 </section>
 
-<main>
-    <section class="congo-brazzaville">
-    <div class="container">
-                <h2>Le Congo-Brazzaville : Une Terre d'Exception</h2>
-                <h3>Les Trésors Naturels</h3>
-        <p>
-            Le congo-Brazzaville se situe sur les rives du deuxième puissant fleuve du monde après l'amazonie.
-            Découvrez les plages désertes de sable fin, bordées de mangroves, qui côtoient 
-            les gorges de latérite aux rouges intenses dans le sud. Explorez les forêts 
-            primaires exubérantes du nord, la savane arbustive à perte de vue des <a href="#">plateaux 
-            Batékés</a>, et les parcs et réserves animalières méconnus mais riches en espèces rares, comme :
-        
-        <ul>
-            <li><a href="#">La réserve du Mont Fouari</a></li>
-            <li><a href="#">Le parc national de Nouabalé-Ndoki</a></li>
-        </ul></p>
+<!-- Congo-Brazzaville -->
+<section class="container flex flex-wrap">
+    <div class="w-full sm:w-8/12 mb-10">
+      <div class="container mx-auto h-full sm:p-10">
+        <nav class="flex px-4 justify-between items-center">
+          <div class="text-4xl font-bold">
+            Le Congo<span class="text-green-700">.</span>
+          </div>
+          <div>
+            <img src="https://image.flaticon.com/icons/svg/497/497348.svg" alt="" class="w-8">
+          </div>
+        </nav>
+        <header class="container px-4 lg:flex mt-10 items-center h-full lg:mt-0">
+          <div class="w-full">
+            <h1 class="text-4xl lg:text-6xl font-bold">Une destination d’ <span class="text-green-700">Exception</span> où l’aventure rencontre l’extraordinaire</h1>
+            <div class="w-20 h-2 bg-green-700 my-4"></div>
+            <p class="text-xl mb-10">Offrez vous une expérience inoubliable au cœur d'une nature sauvage et préservée, avec des safaris privés, des hébergements haut de gamme et des paysages spectaculaires qui éveilleront vos sens et nourriront votre âme d'explorateur.</p>
+            <p class="text-xl mb-10"> Découvrez les plages désertes de sable fin, bordées de mangroves, qui côtoient les gorges de latérite aux rouges intenses dans le sud. Explorez les forêts primaires exubérantes du nord, la savane arbustive à perte de vue des plateaux Batékés, et les parcs et réserves animalières méconnus mais riches en espèces rares.</p>
+            <button class="bg-green-500 text-white text-2xl font-medium px-4 py-2 rounded shadow">En savoir plus</button>
+          </div>
+        </header>
+      </div>
+    </div>
+    <img src="/img/images/singes.jpg" alt="Leafs" class="w-full h-48 object-cover sm:h-screen sm:w-4/12">
+</section>
 
-        <p><span>Deux Capitales Contrastées</span>
-            Le Congo-Brazzaville, c'est aussi un contraste saisissant entre 
-            <a href="#">Brazzaville</a>, capitale politique et affairée, et 
-            <a href="#">Pointe-Noire</a>, l'industrielle, véritable poumon économique grâce à 
-            ses pétrodollars. Ces deux villes incarnent le dynamisme et les enjeux du pays.
-            Quelle que soit la manière d'aborder la République du Congo, ou, pour les intimes, ses paysages belles à couper le souffle invitent à :
-            Défricher les voies inconnues,s'affranchir des idées reçues, explorer une Afrique centrale sauvage et profonde</li>
+
+<!-- Section "Nos Services"  -->
+<section class="container relative flex flex-col justify-between h-full max-w-6xl px-10 mx-auto xl:px-0 mt-5">
+    <h2 class="mb-1 text-3xl font-extrabold leading-tight text-gray-900">Nos Services</h2>
+    <p class="mb-12 text-lg text-gray-500">Découvrez nos services exclusifs conçus pour les voyageurs d’exception</p>
+    <div class="w-full">
+        <div class="flex flex-col w-full mb-10 sm:flex-row group">
+        <div class="w-full mb-10 sm:mb-0 sm:w-1/2">
+    <div class="relative h-full ml-0 mr-0 sm:mr-10 transform transition duration-300 group-hover:scale-105 cursor-pointer">
+      <span class="absolute top-0 left-0 w-full h-full mt-1 ml-1 bg-indigo-500 rounded-lg"></span>
+      <div class="relative h-full p-5 bg-white border-2 border-indigo-500 rounded-lg">
+        <div class="flex items-center -mt-1">
+          <img src="https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?auto=format&fit=crop&w=60&q=60" 
+               alt="Voyages organisés" 
+               class="w-8 h-8 mr-2 rounded-full">
+          <h3 class="my-2 text-lg font-bold text-gray-800">Voyages organisés</h3>
+        </div>
+        <p class="mt-3 mb-1 text-xs font-medium text-indigo-500 uppercase">------------</p>
+        <p class="mb-2 text-gray-600">
+          Partez à la découverte du Congo en toute sérénité grâce à nos voyages sur mesure. Que vous soyez en quête d’aventure, d’évasion ou de détente, nous concevons des itinéraires adaptés à vos envies, avec des guides expérimentés pour une immersion totale dans les merveilles naturelles et culturelles du pays.
         </p>
-
-        <p><span>Un Peuple Unique</span>
-            Au-delà de la beauté naturelle, le Congo offre l'extrême vitalité d'un peuple vibrant, 
-            attachant et philosophe. Ce bonheur de vivre, aucune description ou guide touristique 
-            ne pourra pleinement le retranscrire. Le Congo, encore méconnu, mérite au moins un voyage. Alors, laissez vos hésitations 
-            de côté et partez à la rencontre de cette destination unique au cœur de l'Afrique centrale.
-        
-        </p>
+      </div>
     </div>
-    </section>
-
-    <section class="que-voir-que-faire">
-    <div class="container">
-    <h2>Que voir, que faire au Congo Brazzaville?</h2>
-   
-    <div class="que-voir-button">
-            <a href="#reserver-activite">
-            <button><i class="fa-solid fa-person-hiking"></i>Réserver une activité</button>
-            </a>
-
-            <a href="#voyager-sur-mesure">
-            <button><i class="fa-solid fa-plane-departure"></i>Voyager sur mesure</button>
-            </a>
-
-            <a href="#trouver-hebergement">
-            <button><i class="fa-solid fa-person-hiking"></i>Trouver un hébergement</button>
-            </a>
-
-            <a href="#plus-belles-villes">
-            <button><i class="fa-solid fa-city"></i>Les plus belles villes</button>
-            </a>
-    </div>
-
-
-    <div class="que-voir-grid">
-        <div class="que-voir-card">
-            <a href="#">
-            <img src="/img/que-faire/grid-parc.jpg" alt="parc image">
-            <span>Que visiter au Congo?</span>
-            </a>
         </div>
 
-        <div class="que-voir-card">
-            <a href="#">
-            <img src="/img/que-faire/grid-vestige.jpg" alt="vestige image">
-            <span>Les trésors cachés du Congo</span>
-            </a>
-        </div>
-
-        <div class="que-voir-card">
-            <a href="#">
-            <img src="/img/que-faire/grid-culture.jpg" alt="culture image">
-            <span>Plongez au cœur de la culture congolaise</span>
-            </a>
-        </div>
-
-        <div class="que-voir-card">
-            <a href="#">
-            <img src="/img/que-faire/grid-aventure.jpg" alt="aventure image">
-            <span>Aventures inoubliables au cœur de la nature</span>
-            </a>
-        </div>
-    </div>
-    </section>
-
-    <section class="quand-partir">
-    <div class="container">
-        <h2>Quand partir au Congo : Quelle est la meilleure période ?</h2>
-    <p>Il est essentiel de définir vos objectifs de voyage. La réponse dépend en grande partie des activités prévues.
-        Le Congo bénéficie de deux principales saisons sèches et de deux saisons des pluies:</p>
-
-    <span>Les saisons sèches :</span>
-        De Janvier à février, c’est la petite saison sèche. Les températures chaudes oscillant entre 30°C et 35°C.
-        Idéal pour les déplacements par voie routière, car les routes sont plus praticables.
-        Par contre. 
-        De mai à septembre, les températures plus modérées et conditions idéales pour voyager en toute sérénité.
-        Attention toutefois au ciel gris laiteux, qui peut rendre les paysages moins attrayants visuellement.
-
-    <span>Les saisons  de pluies :</span>
-        La période  de Mars et avril, les pluies sont fréquentes et orageuses d’une grande intensité.
-        De et Octobre à décembre on observe des orages spectaculaires et une humidité élevée.
-
-
-    <p>Le Congo peut être visité toute l’année, mais la grande saison sèche de mai à septembre est souvent considérée comme la plus confortable pour les déplacements et les excursions. Cependant, si vous recherchez des paysages plus verdoyants et pittoresques, les saisons des pluies offrent un charme unique malgré les défis logistiques.</p>
-
-    <button>En savoir plus</button>
-    </div>
-    </section>
-
-    <section class="les-adresses">
-    <div class="container">
-        <h2>Les meilleurs adresses du Congo Brazzaville</h2>
-        <div class="divider"></div>
-        <div class="container-slider swiper-container">
-            <div class="slider-wrapper swiper-wrapper">
-                <div class="card-list swiper-slide">
-                <a href="#">
-                    <img src="/img/adresses/agence-de-voyage.jpg" alt="agence-de-voyage">
-                    <span>Les meilleures agences de voyages</span>
-                </a>
-                </div>
-
-                <div class="card-list swiper-slide">
-                <a href="#">
-                    <img src="/img/adresses/hôtels.jpg" alt="hôtel">
-                    <span>Hôtels à découvrir</span>
-                </a>
-                </div>
-
-                <div class="card-list swiper-slide">
-                <a href="#">
-                    <img src="/img/adresses/restaurants.jpg" alt="restaurants">
-                    <span>Restaurants incontournables</span>
-                </a>
-                </div>
-
-                <div class="card-list swiper-slide">
-                <a href="#">
-                    <img src="/img/adresses/boutiques.jpg" alt="shopping">
-                    <span>Centres commerciaux et boutiques</span>
-                </a>
-                </div>
-
-                <div class="card-list swiper-slide">
-                <a href="#">
-                    <img src="/img/adresses/activités-sportives.jpg" alt="activites">
-                    <span>Activités et loisirs</span>
-                </a>
-                </div>
-
-                <div class="card-list swiper-slide">
-                <a href="#">
-                    <img src="/img/adresses/soins.jpg" alt="soins">
-                    <span>Les meilleurs soins</span>
-                </a>
-                </div>
-
-                <div class="card-list swiper-slide">
-                <a href="#">
-                    <img src="/img/adresses/taxi.jpg" alt="transports">
-                    <span>Options de transport</span>
-                </a>
-                </div>
-
-                <div class="card-list swiper-slide">
-                <a href="#">
-                    <img src="/img/adresses/sorties.jpg" alt="musees">
-                    <span>Musées et galeries d'art</span>
-                </a>
-                </div>
-
-                <div class="card-list swiper-slide">
-                <a href="#">
-                    <img src="/img/adresses/évenements.jpg" alt="spectacles">
-                    <span>Spectacles et événements</span>
-                </a>
-                </div>
-
-                <div class="card-list swiper-slide">
-                <a href="#">
-                    <img src="/img/adresses/services.jpg" alt="services">
-                    <span>Les meilleurs services</span>
-                </a>
-                </div>
-
-                <div class="card-list swiper-slide">
-                <a href="#">
-                    <img src="/img/adresses/bon-plans.jpg" alt="spectacles">
-                    <span>Les bons plans</span>
-                </a>
-                </div>
-                    
-                <div class="card-list swiper-slide">
-                <a href="#">
-                    <img src="/img/adresses/parcs.jpg" alt="parcs">
-                    <span>Les parcs nationaux</span>
-                </a>
-                </div>
+        <div class="w-full sm:w-1/2">
+            <div class="relative h-full ml-0 md:mr-10 transform transition duration-300 group-hover:scale-105 cursor-pointer">
+                 <span class="absolute top-0 left-0 w-full h-full mt-1 ml-1 bg-purple-500 rounded-lg"></span>
+                <div class="relative h-full p-5 bg-white border-2 border-purple-500 rounded-lg">
+                <div class="flex items-center -mt-1">
+                <img src="https://images.unsplash.com/photo-1501117716987-c8e2eec046a9?auto=format&fit=crop&w=60&q=60" 
+                    alt="Réservation d’hébergements" 
+                    class="w-8 h-8 mr-2 rounded-full">
+            <h3 class="my-2 text-lg font-bold text-gray-800">Réservation d’hébergements</h3>
             </div>
-            <!-- Ajout des boutons de navigation -->
-            <div class="swiper-button-next"></div>
-            <div class="swiper-button-prev"></div>
-
-            <!-- Pagination (facultatif) -->
-            <div class="swiper-pagination"></div>
-        </div>
-    <div>
-    </section>
-
-    <section class="voyager">
-    <div class="container">
-        <h2>Voyager au Congo</h2>
-        <h3>Infos pratiques pour voyager au Congo</h3>
-        <p>La République du Congo, avec ses villes emblématiques comme Brazzaville et Pointe-Noire, est une destination qui fascine par sa diversité naturelle. Entre ses vastes parcs nationaux et ses réserves préservées, ce pays offre un terrain de jeu idéal pour les amateurs de faune et de grands espaces. En profitant d'un séjour d'au moins 15 jours, vous aurez l'opportunité de vous émerveiller devant des gorilles majestueux, d'admirer des éléphants en pleine liberté, d'observer des buffles dans leur habitat et même de partager un moment privilégié avec des chimpanzés en les nourrissant."</p>
-        <p>Au nord-ouest du Congo, le parc d’Odzala recèle l’une des plus grandes forêts encore intactes de la planète, abritant une nature d'une incroyable diversité. En plus d’observer sa faune exceptionnelle, vous pourrez aller à la rencontre des autochtones et découvrir leur culture. Au sud, le littoral maritime invite au farniente sur les belles plages de Pointe-Noire.</p>
-        <p>Tout au long de l’année, on peut y observer plusieurs espèces de tortues marines. Au large des côtes, en saison sèche, les baleines à bosse, quant à elles, offrent des spectacles saisissants.</p>
-
-        <div class="que-voir-button">
-            <a href="#reserver-activite">
-            <button><i class="fa-solid fa-bed"></i>Trouver un hôtel</button>
-            </a>
-
-            <a href="#voyager-sur-mesure">
-            <button><i class="fa-solid fa-car"></i>Location voiture</button>
-            </a>
-
-            <a href="#trouver-hebergement">
-            <button><i class="fa-solid fa-phone-volume"></i>Forfait-SIM</button>
-            </a>
-
-            <a href="#plus-belles-villes">
-            <button><i class="fa-brands fa-wpforms"></i>Formalités</button>
-            </a>
-            <a href="#plus-belles-villes">
-            <button><i class="fa-solid fa-money-check-dollar"></i></i>Budget</button>
-            </a>
-            <a href="#plus-belles-villes">
-            <button><i class="fa-solid fa-utensils"></i>Gastronomie</button>
-            </a>
-            <a href="#plus-belles-villes">
-            <button><i class="fa-regular fa-clock"></i> Horaires</button>
-            </a>
-            <a href="#plus-belles-villes">
-            <button><i class="fa-solid fa-bus"></i>Se déplacer</button>
-            </a>
-        </div>
-
-        <div class="voyager-idees">
-            <h2>Les idées de séjour</h2>
-            <div class="voyager-grid">
-                <div class="voyager-car">
-                    <div class="image-content">
-                        <img src="/img/voyager/voyager1.jpg" alt="photo de lion" class="overlay">
-                    </div>
-                
-                    <div class="card-content">
-                        <p class="name">Ndinga day trip tour</p>
-                        <p>Budget: <span class="color-blue">€</span> 500</p>
-                        <span><i class="fa-solid fa-clock"></i> 1 jours</span>
-                        <button class="btn-card">En savoir plus</button>
-                    </div>
-                </div>  
-
-                <div class="voyager-car">
-                    <div class="image-content">
-                        <img src="/img/voyager/voyager2.jpg" alt="photo de chute" class="overlay">
-                    </div>
-                
-                    <div class="card-content">
-                        <p class="name">River speedboat tour</p>
-                        <p>Budget: <span class="color-blue">€</span> 500</p>
-                        <span><i class="fa-solid fa-clock"></i> 1 jours</span>
-                        <button class="btn-card">En savoir plus</button>
-                    </div>
-                </div>  
-                <div class="voyager-car">
-                    <div class="image-content">
-                        <img src="/img/voyager/voyager3.jpg" alt="photo d'éléphant" class="overlay">
-                    </div>
-                
-                    <div class="card-content">
-                        <p class="name">Parc du Niari tour</p>
-                        <p>Budget: <span class="color-blue">€</span> 700</p>
-                        <span><i class="fa-solid fa-clock"></i> 2 jours</span>
-                        <button class="btn-card">En savoir plus</button>
-                    </div>
-
-                    <button class="btn-card-down">Plus d'idées de séjour</button>
-                </div>  
-            </div>
-        </div>
-    
-    </div>
-
-    </section>
-
-    <section class="decouvrer">
-    <div class="container">
-        <div class="decouvrer-content">
-            <h2>Découvrez le Congo</h2>
-            <h3>Un joyau méconnu au cœur de l'Afrique centrale</h3>
-            <p>Le Congo, pays chargé d'histoire et de richesses naturelles, est une destination encore méconnue mais pleine de promesses. Habité dès la Préhistoire par les Akas, le territoire a vu l'arrivée des ethnies bantoues, suivies des explorateurs portugais qui instaurèrent tristement le commerce d’esclaves. À la fin du XIXe siècle, l’explorateur Savorgnan de Brazza convainc le royaume local de nouer des alliances avec la France, ouvrant la voie à la colonisation.
+            <p class="mt-3 mb-1 text-xs font-medium text-purple-500 uppercase">------------</p>
+            <p class="mb-2 text-gray-600">
+            Profitez d’un séjour inoubliable en choisissant parmi une sélection d’hôtels de luxe, lodges en pleine nature et éco-resorts d’exception. Que vous souhaitiez un cadre raffiné ou une immersion en pleine savane, nous trouvons pour vous l’hébergement parfait, alliant confort et authenticité.
             </p>
-            <p>Sous domination des compagnies privées, la population locale subit de lourdes exactions, un scandale qui marquera l’histoire du pays. En 1960, le Congo accède à son indépendance, mais les décennies suivantes sont marquées par des rivalités politiques et des conflits civils. Depuis la fin des années 1990, le pays s'efforce de tourner la page, misant sur des secteurs comme le pétrole et le bois pour relancer son économie.</p>
-            <p>Malgré ces défis, le Congo possède un patrimoine naturel exceptionnel. Des forêts denses abritant une biodiversité unique, des parcs nationaux protégés, et des paysages spectaculaires offrent un potentiel énorme pour l'écotourisme. Cependant, le développement du tourisme reste freiné par des infrastructures limitées et des coûts élevés.</p>
-            <p>Conscient de l’importance de préserver son environnement tout en améliorant la qualité de vie des populations locales, le Congo aspire aujourd’hui à devenir une destination phare de l’écotourisme. Ce projet repose sur la mise en valeur de ses atouts naturels, la protection de son écosystème et l’implication active des communautés locales dans des initiatives durables.</p>
-            <p>Visiter le Congo, c'est explorer une terre sauvage au cœur de l'Afrique centrale, où histoire et nature se mêlent pour offrir une expérience inoubliable. Prêt à découvrir ce trésor caché ?</p>
-        
-
-            <div class="decouvrer-img">
-                <div class="decouvrer-card">
-                <a href="#">
-                <img src="/img/decouvrir/sape.jpg" alt="sape image">
-                <span>La sape</span>
-                </a>
-                </div>
-
-                <div class="decouvrer-card">
-                    <a href="#">
-                    <img src="/img/decouvrir/environnement.jpg" alt="environnement image">
-                    <span>L'environnement</span>
-                    </a>
-                </div>
-
-                <div class="decouvrer-card">
-                    <a href="#">
-                    <img src="/img/decouvrir/gastronomie.jpg" alt="Gastronomie image">
-                    <span>La Gastronomie</span>
-                    </a>
-                </div>
-
-                <div class="decouvrer-card">
-                    <a href="#">
-                    <img src="/img/decouvrir/biodiversite.jpg" alt="biodiversité image">
-                    <span>La biodiversité</span>
-                    </a>
-                </div>
-
-                <div class="decouvrer-card">
-                    <a href="#">
-                    <img src="/img/decouvrir/geographie.jpg" alt="géographie image">
-                    <span>La géographie</span>
-                    </a>
-                </div>
-
-                <div class="decouvrer-card">
-                    <a href="#">
-                    <img src="/img/decouvrir/beaux-arts.jpg" alt="beaux-arts image">
-                    <span>La Beaux arts</span>
-                    </a>
-                </div>
-
-                <div class="decouvrer-card">
-                    <a href="#">
-                    <img src="/img/decouvrir/musique.jpg" alt="musique image">
-                    <span>La musique</span>
-                    </a>
-                </div>
-
-                <div class="decouvrer-card">
-                    <a href="#">
-                    <img src="/img/decouvrir/climat.jpg" alt="climat image">
-                    <span>Le climat</span>
-                    </a>
-                </div>
+            </div>
             </div>
         </div>
     </div>
-    </section>
-</main>
+
+        <div class="flex flex-col w-full mb-10 sm:flex-row group">
+  <!-- Carte 1 -->
+  <div class="w-full mb-10 sm:mb-0 sm:w-1/2">
+    <div class="relative h-full ml-0 mr-0 sm:mr-10 transform transition duration-300 group-hover:scale-105 cursor-pointer">
+      <span class="absolute top-0 left-0 w-full h-full mt-1 ml-1 bg-blue-400 rounded-lg"></span>
+      <div class="relative h-full p-5 bg-white border-2 border-blue-400 rounded-lg">
+        <div class="flex items-center -mt-1">
+          <img src="https://images.unsplash.com/photo-1556912167-f556f1f39fdf?auto=format&fit=crop&w=60&q=60" 
+               alt="Découverte gastronomique" 
+               class="w-8 h-8 mr-2 rounded-full">
+          <h3 class="my-2 text-lg font-bold text-gray-800">Découverte gastronomique</h3>
+        </div>
+        <p class="mt-3 mb-1 text-xs font-medium text-blue-400 uppercase">------------</p>
+        <p class="mb-2 text-gray-600">
+          Savourez les richesses culinaires du Congo à travers des expériences gastronomiques uniques. Des restaurants étoilés aux marchés locaux, nous vous guidons vers les meilleures adresses pour déguster des plats traditionnels revisités avec élégance et raffinement.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Carte 2 -->
+  <div class="w-full mb-10 sm:mb-0 sm:w-1/2">
+    <div class="relative h-full ml-0 mr-0 sm:mr-10 transform transition duration-300 group-hover:scale-105 cursor-pointer">
+      <span class="absolute top-0 left-0 w-full h-full mt-1 ml-1 bg-yellow-400 rounded-lg"></span>
+      <div class="relative h-full p-5 bg-white border-2 border-yellow-400 rounded-lg">
+        <div class="flex items-center -mt-1">
+          <img src="https://images.unsplash.com/photo-1562183241-b93750f34fa4?auto=format&fit=crop&w=60&q=60" 
+               alt="Location de véhicules" 
+               class="w-8 h-8 mr-2 rounded-full">
+          <h3 class="my-2 text-lg font-bold text-gray-800">Location de véhicules</h3>
+        </div>
+        <p class="mt-3 mb-1 text-xs font-medium text-yellow-400 uppercase">------------</p>
+        <p class="mb-2 text-gray-600">
+          Explorez le Congo en toute liberté grâce à notre service de location de véhicules. Que ce soit pour une escapade en 4x4 dans la jungle, une voiture de luxe pour un séjour haut de gamme ou un chauffeur privé pour plus de confort, nous avons la solution idéale pour vos déplacements.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Carte 3 -->
+  <div class="w-full sm:w-1/2">
+    <div class="relative h-full ml-0 md:mr-10 transform transition duration-300 group-hover:scale-105 cursor-pointer">
+      <span class="absolute top-0 left-0 w-full h-full mt-1 ml-1 bg-green-500 rounded-lg"></span>
+      <div class="relative h-full p-5 bg-white border-2 border-green-500 rounded-lg">
+        <div class="flex items-center -mt-1">
+          <img src="https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?auto=format&fit=crop&w=60&q=60" 
+               alt="Réservation d’activités" 
+               class="w-8 h-8 mr-2 rounded-full">
+          <h3 class="my-2 text-lg font-bold text-gray-800">Réservation d’activités</h3>
+        </div>
+        <p class="mt-3 mb-1 text-xs font-medium text-green-500 uppercase">------------</p>
+        <p class="mb-2 text-gray-600">
+          Vivez des expériences inoubliables avec notre large choix d’activités exclusives : safaris dans des réserves préservées, croisières sur le fleuve Congo, randonnées en pleine nature, excursions culturelles et bien plus encore. Réservez en toute simplicité et profitez d’un service sur mesure.
+        </p>
+      </div>
+    </div>
+  </div>
+    </div>
+
+    </div>
+</section>
 
 
+<!-- Section "Quand partir" -->
+<section class="container bg-blue-400 dark:bg-gray-800 py-16 mt-16">
+  <div class="mx-auto max-w-7xl px-6 lg:px-8">
+    <div class="mx-auto max-w-7xl sm:text-center mb-14">
+      <p class="mt-2 text-3xl font-bold tracking-tight text-white sm:text-4xl">
+        Quand partir au Congo, quelle est la meilleure période ?
+      </p>
+      <p class="mt-2 text-lg sm:text-center leading-8 text-xl">
+        Il est essentiel de définir vos objectifs de voyage. La réponse dépend en grande partie des activités prévues. Le Congo bénéficie de deux principales saisons sèches et de deux saisons des pluies.
+      </p>
+    </div>
+    <div class="mx-auto grid max-w-2xl grid-cols-1 gap-8 overflow-hidden lg:mx-0 lg:max-w-none lg:grid-cols-4">
+      <div>
+        <div class="flex items-center text-sm font-semibold leading-6 text-white">
+          <svg viewBox="0 0 4 4" class="mr-4 h-1 w-1 flex-none" aria-hidden="true">
+            <circle cx="2" cy="2" r="2" fill="currentColor"></circle>
+          </svg>
+          Janvier à Février
+          <div class="absolute -ml-2 h-px w-screen -translate-x-full bg-gray-500/80 sm:-ml-4 lg:static lg:-mr-6 lg:ml-8 lg:w-auto lg:flex-auto lg:translate-x-0" aria-hidden="true"></div>
+        </div>
+        <p class="mt-6 text-lg font-semibold leading-8 tracking-wide text-xl">Saison sèche</p>
+        <p class="mt-1 text-base leading-7 text-white dark:text-gray-400">
+          Les températures chaudes oscillant entre 30°C et 35°C. Idéal pour les déplacements par voie routière, car les routes sont plus praticables.
+        </p>
+      </div>
+      <div>
+        <div class="flex items-center text-white font-semibold leading-6 text-xl">
+          <svg viewBox="0 0 4 4" class="mr-4 h-1 w-1 flex-none" aria-hidden="true">
+            <circle cx="2" cy="2" r="2" fill="currentColor"></circle>
+          </svg>
+          Mai à Septembre
+          <div class="absolute -ml-2 h-px w-screen -translate-x-full bg-gray-500/80 sm:-ml-4 lg:static lg:-mr-6 lg:ml-8 lg:w-auto lg:flex-auto lg:translate-x-0" aria-hidden="true"></div>
+        </div>
+        <p class="mt-6 text-lg font-semibold leading-8 tracking-wide text-xl">Saison sèche</p>
+        <p class="mt-1 text-base leading-7 text-white dark:text-gray-400">
+          Températures plus modérées et conditions idéales pour voyager en toute sérénité.
+        </p>
+      </div>
+      <div>
+        <div class="flex items-center text-sm font-semibold leading-6 text-white">
+          <svg viewBox="0 0 4 4" class="mr-4 h-1 w-1 flex-none" aria-hidden="true">
+            <circle cx="2" cy="2" r="2" fill="currentColor"></circle>
+          </svg>
+          Mars et Avril
+          <div class="absolute -ml-2 h-px w-screen -translate-x-full bg-gray-500/80 sm:-ml-4 lg:static lg:-mr-6 lg:ml-8 lg:w-auto lg:flex-auto lg:translate-x-0" aria-hidden="true"></div>
+        </div>
+        <p class="mt-6 text-lg font-semibold leading-8 tracking-wide text-xl">Saisons de pluies</p>
+        <p class="mt-1 text-base leading-7 text-white dark:text-gray-400">
+          Les pluies sont fréquentes et orageuses d’une grande intensité.
+        </p>
+      </div>
+      <div>
+        <div class="flex items-center text-sm font-semibold leading-6 text-white">
+          <svg viewBox="0 0 4 4" class="mr-4 h-1 w-1 flex-none" aria-hidden="true">
+            <circle cx="2" cy="2" r="2" fill="currentColor"></circle>
+          </svg>
+          Octobre à Décembre
+          <div class="absolute -ml-2 h-px w-screen -translate-x-full bg-gray-500/80 sm:-ml-4 lg:static lg:-mr-6 lg:ml-8 lg:w-auto lg:flex-auto lg:translate-x-0" aria-hidden="true"></div>
+        </div>
+        <p class="mt-6 text-lg font-semibold leading-8 tracking-wide text-xl">Saisons de pluies</p>
+        <p class="mt-1 text-base leading-7 text-white dark:text-gray-400">
+          On observe des orages spectaculaires et une humidité élevée.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
 
 
+<!-- Section "Decouvrir" -->
+<section class=" mx-auto my-5">
 
+    <div class="container rounded-lg flex flex-col md:flex-row items-center md:shadow-xl md:h-72 mx-2">
+        
+        <div class="z-0 order-1 md:order-2 relative w-full md:w-2/5 h-80 md:h-full overflow-hidden rounded-lg md:rounded-none md:rounded-r-lg">
+        <div class="absolute inset-0 w-full h-full object-fill object-center bg-blue-400 bg-opacity-30 bg-cover bg-bottom" 
+     style="background-image: url('/img/images/lasape.jpg'); background-blend-mode: multiply;">
+        </div>
+
+            <div class="md:hidden absolute inset-0 h-full p-6 pb-6 flex flex-col-reverse justify-start items-start bg-gradient-to-b from-transparent via-transparent to-gray-900">
+                <h3 class="w-full font-bold text-2xl text-white leading-tight mb-2">L'Art de l'Élégance à la Congolaise</h3>
+                <h4 class="w-full text-xl text-gray-100 leading-tight">La SAPE</h4>
+            </div>
+            <svg class="hidden md:block absolute inset-y-0 h-full w-24 fill-current text-white -ml-12" viewBox="0 0 100 100" preserveAspectRatio="none">
+                <polygon points="50,0 100,0 50,100 0,100" />
+            </svg>
+        </div>
+
+        <div class=" order-2 md:order-1 w-full h-full md:w-3/5 flex items-center -mt-6 md:mt-0">
+            <div class="p-8 md:pr-18 md:pl-14 md:py-12 mx-2 md:mx-0 h-full bg-white rounded-lg md:rounded-none md:rounded-l-lg shadow-xl md:shadow-none">
+                <h4 class="hidden md:block text-xl text-gray-400">La SAPE</h4>
+                <h3 class="hidden md:block font-bold text-2xl text-gray-700">L'Art de l'Élégance à la Congolaise</h3>
+                <p class="text-gray-600 text-justify">La SAPE est bien plus qu'un simple style vestimentaire : c'est une véritable philosophie où l’élégance, le raffinement et l’attitude sont essentiels. Les sapeurs, vêtus de costumes colorés et sophistiqués, défilent dans les rues avec fierté, incarnant l’art de bien s’habiller et de sublimer leur quotidien. Ce phénomène reflète l’identité congolaise, mêlant créativité, audace et un amour profond pour la mode..</p>
+                <a class="flex items-baseline mt-3 text-blue-600 hover:text-blue-900 focus:text-blue-900" href="">
+                    <span>En savoir plus</span>
+                    <span class="text-xs ml-1">&#x279c;</span>
+                </a>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- Section "Voyager" -->
+<section class="container w-full mx-auto py-10 bg-gray-50 dark:bg-gray-900 dark:text-white">
+
+  <div class="w-full h-full flex flex-col items-center md:py-4 py-10">
+    <!-- Col - 2 -->
+    <div
+      class="xl:w-[80%] sm:w-[85%] w-[90%] mx-auto flex md:flex-row flex-col lg:gap-4 gap-2 justify-center lg:items-stretch md:items-center mt-4">
+      <!--  -->
+      <img class="md:w-[50%] w-full md:rounded-t-lg rounded-sm" src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NzEyNjZ8MHwxfHNlYXJjaHw1fHxob21lfGVufDB8MHx8fDE3MTA0OTAwNjl8MA&ixlib=rb-4.0.3&q=80&w=1080" alt="billboard image" />
+
+      <div class="md:w-[50%] w-full bg-gray-100 dark:bg-gray-900 dark:text-gray-400 md:p-4 p-0 rounded-md">
+        <h2 class="text-3xl font-semibold text-gray-900 dark:text-white">Lorem ipsum dolor sit amet consectetur</h2>
+        <p class="text-md mt-4">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tempore placeat assumenda nam
+          veritatis, magni doloremque pariatur quos fugit ipsa id voluptatibus deleniti officiis cum ratione eligendi
+          sed necessitatibus aliquam error laborum delectus quaerat. Delectus hic error eligendi sed repellat natus fuga
+          nobis tempora possimus ullam!</p>
+      </div>
+
+    </div>
+    <!-- Col - 3 -->
+    <div
+      class="xl:w-[80%] sm:w-[85%] w-[90%] mx-auto flex md:flex-row flex-col flex-col-reverse lg:gap-4 gap-2 justify-center lg:items-stretch md:items-center mt-6">
+      <!--  -->
+      <div class="md:w-[50%] w-full bg-gray-100 dark:bg-gray-900 dark:text-gray-400 md:p-4 p-0 rounded-md">
+        <h2 class="text-3xl font-semibold text-gray-900 dark:text-white">Lorem ipsum dolor sit amet consectetur</h2>
+
+        <p class="text-md mt-4">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tempore placeat assumenda nam
+          veritatis, magni doloremque pariatur quos fugit ipsa id voluptatibus deleniti officiis cum ratione eligendi
+          sed necessitatibus aliquam error laborum delectus quaerat. Delectus hic error eligendi sed repellat natus fuga
+          nobis tempora possimus ullam!</p>
+      </div>
+      <!--  -->
+      <img class="md:w-[50%] w-full md:rounded-t-lg rounded-sm" src="https://images.unsplash.com/photo-1516455590571-18256e5bb9ff?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NzEyNjZ8MHwxfHNlYXJjaHwxMXx8aG9tZXxlbnwwfDB8fHwxNzEwNDkwMDcwfDA&ixlib=rb-4.0.3&q=80&w=1080" alt="billboard image" />
+
+    </div>
+  </div>
+</section>
+
+<!-- Section "Gallery" -->
+<section class="container grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4">
+ 
+  <div class="group cursor-pointer relative">
+    <img
+      src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NzEyNjZ8MHwxfHNlYXJjaHw1fHxuYXR1cmV8ZW58MHwwfHx8MTY5NDA5OTcyOXww&ixlib=rb-4.0.3&q=80&w=1080"
+      alt="Image 1"
+      class="w-full h-48 object-cover rounded-lg transition-transform transform scale-100 group-hover:scale-105"
+    />
+    <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+      <button class="bg-white text-gray-800 px-4 py-2 rounded-lg hover:bg-gray-200 transition-colors">
+        View
+      </button>
+    </div>
+  </div>
+ 
+  <div class="group cursor-pointer relative">
+    <img
+      src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NzEyNjZ8MHwxfHNlYXJjaHw5fHxuYXR1cmV8ZW58MHwwfHx8MTY5NDA5OTcyOXww&ixlib=rb-4.0.3&q=80&w=1080"
+      alt="Image 1"
+      class="w-full h-48 object-cover rounded-lg transition-transform transform scale-100 group-hover:scale-105"
+    />
+    <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+      <button class="bg-white text-gray-800 px-4 py-2 rounded-lg hover:bg-gray-200 transition-colors">
+        View
+      </button>
+    </div>
+  </div>
+ 
+  <div class="group cursor-pointer relative">
+    <img
+      src="https://images.unsplash.com/photo-1501854140801-50d01698950b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NzEyNjZ8MHwxfHNlYXJjaHwxMHx8bmF0dXJlfGVufDB8MHx8fDE2OTQwOTk3Mjl8MA&ixlib=rb-4.0.3&q=80&w=1080"
+      alt="Image 1"
+      class="w-full h-48 object-cover rounded-lg transition-transform transform scale-100 group-hover:scale-105"
+    />
+    <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+      <button class="bg-white text-gray-800 px-4 py-2 rounded-lg hover:bg-gray-200 transition-colors">
+        View
+      </button>
+    </div>
+  </div>
+ 
+  <div class="group cursor-pointer relative">
+    <img
+      src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NzEyNjZ8MHwxfHNlYXJjaHwyfHxuYXR1cmV8ZW58MHwwfHx8MTY5NDA5OTcyOXww&ixlib=rb-4.0.3&q=80&w=1080"
+      alt="Image 1"
+      class="w-full h-48 object-cover rounded-lg transition-transform transform scale-100 group-hover:scale-105"
+    />
+    <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+      <button class="bg-white text-gray-800 px-4 py-2 rounded-lg hover:bg-gray-200 transition-colors">
+        View
+      </button>
+    </div>
+  </div>
+ 
+  <div class="group cursor-pointer relative">
+    <img
+      src="https://images.unsplash.com/photo-1505765050516-f72dcac9c60e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NzEyNjZ8MHwxfHNlYXJjaHwxNHx8bmF0dXJlfGVufDB8MHx8fDE2OTQwOTk3Mjl8MA&ixlib=rb-4.0.3&q=80&w=1080"
+      alt="Image 1"
+      class="w-full h-48 object-cover rounded-lg transition-transform transform scale-100 group-hover:scale-105"
+    />
+    <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+      <button class="bg-white text-gray-800 px-4 py-2 rounded-lg hover:bg-gray-200 transition-colors">
+        View
+      </button>
+    </div>
+  </div>
+ 
+  <div class="group cursor-pointer relative">
+    <img
+      src="https://images.unsplash.com/photo-1475924156734-496f6cac6ec1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NzEyNjZ8MHwxfHNlYXJjaHwxMXx8bmF0dXJlfGVufDB8MHx8fDE2OTQwOTk3Mjl8MA&ixlib=rb-4.0.3&q=80&w=1080"
+      alt="Image 1"
+      class="w-full h-48 object-cover rounded-lg transition-transform transform scale-100 group-hover:scale-105"
+    />
+    <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+      <button class="bg-white text-gray-800 px-4 py-2 rounded-lg hover:bg-gray-200 transition-colors">
+        View
+      </button>
+    </div>
+  </div>
+ 
+  <div class="group cursor-pointer relative">
+    <img
+      src="https://images.unsplash.com/photo-1465146344425-f00d5f5c8f07?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NzEyNjZ8MHwxfHNlYXJjaHw0fHxuYXR1cmV8ZW58MHwwfHx8MTY5NDA5OTcyOXww&ixlib=rb-4.0.3&q=80&w=1080"
+      alt="Image 1"
+      class="w-full h-48 object-cover rounded-lg transition-transform transform scale-100 group-hover:scale-105"
+    />
+    <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+      <button class="bg-white text-gray-800 px-4 py-2 rounded-lg hover:bg-gray-200 transition-colors">
+        View
+      </button>
+    </div>
+  </div>
+ 
+  <div class="group cursor-pointer relative">
+    <img
+      src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NzEyNjZ8MHwxfHNlYXJjaHw1fHxuYXR1cmV8ZW58MHwwfHx8MTY5NDA5OTcyOXww&ixlib=rb-4.0.3&q=80&w=1080"
+      alt="Image 1"
+      class="w-full h-48 object-cover rounded-lg transition-transform transform scale-100 group-hover:scale-105"
+    />
+    <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+      <button class="bg-white text-gray-800 px-4 py-2 rounded-lg hover:bg-gray-200 transition-colors">
+        View
+      </button>
+    </div>
+  </div>
+ 
+  <div class="group cursor-pointer relative">
+    <img
+      src="https://images.unsplash.com/photo-1426604966848-d7adac402bff?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NzEyNjZ8MHwxfHNlYXJjaHw3fHxuYXR1cmV8ZW58MHwwfHx8MTY5NDA5OTcyOXww&ixlib=rb-4.0.3&q=80&w=1080"
+      alt="Image 1"
+      class="w-full h-48 object-cover rounded-lg transition-transform transform scale-100 group-hover:scale-105"
+    />
+    <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+      <button class="bg-white text-gray-800 px-4 py-2 rounded-lg hover:bg-gray-200 transition-colors">
+        View
+      </button>
+    </div>
+  </div>
+ 
+  <div class="group cursor-pointer relative">
+    <img
+      src="https://images.unsplash.com/photo-1419133203517-f3b3ed0ba2bb?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NzEyNjZ8MHwxfHNlYXJjaHw1fHxyaXZlcnxlbnwwfDB8fHwxNjk0MDk5ODgyfDA&ixlib=rb-4.0.3&q=80&w=1080"
+      alt="Image 1"
+      class="w-full h-48 object-cover rounded-lg transition-transform transform scale-100 group-hover:scale-105"
+    />
+    <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+      <button class="bg-white text-gray-800 px-4 py-2 rounded-lg hover:bg-gray-200 transition-colors">
+        View
+      </button>
+    </div>
+  </div>
+ 
+  <div class="group cursor-pointer relative">
+    <img
+      src="https://images.unsplash.com/photo-1498855926480-d98e83099315?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NzEyNjZ8MHwxfHNlYXJjaHw4fHxyaXZlcnxlbnwwfDB8fHwxNjk0MDk5ODgyfDA&ixlib=rb-4.0.3&q=80&w=1080"
+      alt="Image 1"
+      class="w-full h-48 object-cover rounded-lg transition-transform transform scale-100 group-hover:scale-105"
+    />
+    <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+      <button class="bg-white text-gray-800 px-4 py-2 rounded-lg hover:bg-gray-200 transition-colors">
+        View
+      </button>
+    </div>
+  </div>
+ 
+  <div class="group cursor-pointer relative">
+    <img
+      src="https://images.unsplash.com/photo-1502754400466-c87ff3039da7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NzEyNjZ8MHwxfHNlYXJjaHwxMXx8cml2ZXJ8ZW58MHwwfHx8MTY5NDA5OTg4Mnww&ixlib=rb-4.0.3&q=80&w=1080"
+      alt="Image 1"
+      class="w-full h-48 object-cover rounded-lg transition-transform transform scale-100 group-hover:scale-105"
+    />
+    <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+      <button class="bg-white text-gray-800 px-4 py-2 rounded-lg hover:bg-gray-200 transition-colors">
+        View
+      </button>
+    </div>
+  </div>
+
+
+  <!-- Repeat this div for each image -->
+</section>
 
 {% endblock %}
 

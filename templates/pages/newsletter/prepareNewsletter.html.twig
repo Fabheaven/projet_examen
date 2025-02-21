@@ -3,37 +3,60 @@
 {% block title %}Création de Newsletter{% endblock %}
 
 {% block body %}
-    <div class="container mt-5">
-        <h1 class="display-4 text-center mb-4">Créez votre Newsletter</h1>
-        <p class="lead text-center mb-5">
-            Utilisez notre formulaire ci-dessous pour rédiger et personnaliser votre prochaine newsletter. Un excellent moyen d'engager votre audience et de les tenir informés des dernières nouvelles.
+<section class="h-screen flex items-center justify-center">
+    <div class="container mx-auto p-8 shadow-lg rounded-lg bg-white max-w-4xl">
+        <h1 class="text-3xl font-bold text-center mb-6">Créez votre Newsletter</h1>
+        <p class="text-center text-gray-600 mb-6">
+            Utilisez notre formulaire ci-dessous pour rédiger et personnaliser votre prochaine newsletter.
         </p>
 
-        <div class="row justify-content-center">
-            <div class="col-lg-8 col-md-10 col-sm-12">
-                {{ form_start(form) }}
-                    <div class="form-group">
-                        <label for="name" class="font-weight-bold">Nom de la Newsletter</label>
-                        {{ form_widget(form.name, {'attr': {'class': 'form-control', 'placeholder': 'Entrez le nom de la newsletter'}}) }}
-                    </div>
+        <div class="flex flex-wrap">
+            <div class="w-full lg:w-1/2">
+                <img 
+                    src="https://tecdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp" 
+                    class="w-full rounded-lg" 
+                    alt="Illustration" />
+            </div>
+            
+            <div class="w-full lg:w-1/2 px-6">
+                {{ form_start(form, {'attr': {'class': 'space-y-4'}}) }}
+                
+                <div>
+                    <label for="name" class="block font-semibold">Nom de la Newsletter</label>
+                    {{ form_widget(form.name, {'attr': {'class': 'w-full border rounded p-2'}}) }}
+                </div>
+                
+                <div>
+                    <label for="content" class="block font-semibold">Contenu de la Newsletter</label>
+                    {{ form_widget(form.content, {'attr': {'class': 'w-full border rounded p-2', 'rows': '6'}}) }}
+                </div>
+                
+                <div>
+                    <label for="categories" class="block font-semibold">Catégories</label>
+                    {{ form_widget(form.categories, {'attr': {'class': 'w-full border rounded p-2'}}) }}
+                </div>
+                
+      
+    <button 
+        type="submit" 
+        
+        {{ form_widget(form.submit, {
+            'attr': {
+                'class': 'bg-custom-blue hover:bg-indigo-700 text-white py-2 px-6 rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-indigo-500'
+            }
+        }) }}
+    </button>
 
-                    <div class="form-group">
-                        <label for="content" class="font-weight-bold">Contenu de la Newsletter</label>
-                        {{ form_widget(form.content, {'attr': {'class': 'form-control', 'rows': '6', 'placeholder': 'Rédigez le contenu de la newsletter ici'}}) }}
-                    </div>
-
-                    <div class="form-group">
-                        <label for="categories" class="font-weight-bold">Catégories</label>
-                        {{ form_widget(form.categories, {'attr': {'class': 'form-control'}}) }}
-                    </div>
+                
                 {{ form_end(form) }}
+
+                {% if app.flashes('success') %}
+                    <div class="mt-4 p-4 bg-green-100 text-green-700 rounded">
+                        <p>La newsletter a été créée avec succès. Vous pouvez maintenant l'envoyer à vos abonnés !</p>
+                    </div>
+                {% endif %}
             </div>
         </div>
-
-        {% if app.flashes('success') %}
-            <div class="alert alert-success mt-4">
-                <p>La newsletter a été créée avec succès. Vous pouvez maintenant l'envoyer à vos abonnés !</p>
-            </div>
-        {% endif %}
     </div>
+</section>
 {% endblock %}

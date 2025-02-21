@@ -16,34 +16,37 @@ use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\Constraints\Email;
 use Symfony\Component\Validator\Constraints\Regex;
+use App\Validator\Capitalized;
 
 class RegistrationFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('first_name', TextType::class, [
-                'constraints' => [
-                    new NotBlank(['message' => 'Veuillez saisir un prénom.']),
-                    new Length([
-                        'min' => 3,
-                        'max' => 50,
-                        'minMessage' => 'Votre prénom doit comporter au moins {{ limit }} caractères.',
-                        'maxMessage' => 'Votre prénom ne doit pas dépasser {{ limit }} caractères.',
-                    ]),
-                ],
-            ])
-            ->add('last_name', TextType::class, [
-                'constraints' => [
-                    new NotBlank(['message' => 'Veuillez saisir un nom.']),
-                    new Length([
-                        'min' => 3,
-                        'max' => 20,
-                        'minMessage' => 'Votre nom doit comporter au moins {{ limit }} caractères.',
-                        'maxMessage' => 'Votre nom ne doit pas dépasser {{ limit }} caractères.',
-                    ]),
-                ],
-            ])
+        ->add('first_name', TextType::class, [
+            'constraints' => [
+                new NotBlank(['message' => 'Veuillez saisir un prénom.']),
+                new Length([
+                    'min' => 3,
+                    'max' => 50,
+                    'minMessage' => 'Votre prénom doit comporter au moins {{ limit }} caractères.',
+                    'maxMessage' => 'Votre prénom ne doit pas dépasser {{ limit }} caractères.',
+                ]),
+                new Capitalized(), // Ajout de la contrainte personnalisée
+            ],
+        ])
+        ->add('last_name', TextType::class, [
+            'constraints' => [
+                new NotBlank(['message' => 'Veuillez saisir un nom.']),
+                new Length([
+                    'min' => 3,
+                    'max' => 20,
+                    'minMessage' => 'Votre nom doit comporter au moins {{ limit }} caractères.',
+                    'maxMessage' => 'Votre nom ne doit pas dépasser {{ limit }} caractères.',
+                ]),
+                new Capitalized(), // Ajout de la contrainte personnalisée
+            ],
+        ])
             ->add('email', EmailType::class, [
                 'constraints' => [
                     new NotBlank(['message' => 'Ce champ ne peut être vide.']),

@@ -23,42 +23,79 @@ if (loginButton && menuButton) {
 }
 
 
-//Script pour l'indicateur de sécurité du mot de passe
-		document.addEventListener("DOMContentLoaded", function () {
-			const passwordInput = document.getElementById("password");
-			const strengthBar = document.getElementById("password-strength-bar");
-			const strengthText = document.getElementById("password-strength-text");
+document.addEventListener("DOMContentLoaded", function() {
 
-			passwordInput.addEventListener("input", function () {
-				const password = passwordInput.value;
-				const strength = getPasswordStrength(password);
+  const passwordInput = document.getElementById("password");
+  const strengthBar = document.getElementById("password-strength-bar");
+  const strengthText = document.getElementById("password-strength-text");
 
-				// Définition des couleurs et messages selon la force du mot de passe
-				const strengthLevels = [
-					{ text: "Très faible", color: "bg-red-500 w-1/5" },
-					{ text: "Faible", color: "bg-orange-500 w-2/5" },
-					{ text: "Moyen", color: "bg-yellow-500 w-3/5" },
-					{ text: "Fort", color: "bg-green-500 w-4/5" },
-					{ text: "Très fort", color: "bg-blue-600 w-full" }
-				];
+  if (!passwordInput || !strengthBar || !strengthText) {
+      console.error("Un ou plusieurs éléments HTML sont manquants !");
+      return;
+  }
 
-				strengthBar.className = `h-2.5 rounded-full transition-all duration-300 ${strengthLevels[strength].color}`;
-				strengthText.textContent = strengthLevels[strength].text;
-				strengthText.className = `text-sm mt-1 font-medium ${strengthLevels[strength].color.replace('bg-', 'text-')}`;
-			});
+  console.log("Éléments trouvés :", passwordInput, strengthBar, strengthText);
 
-			// Fonction pour évaluer la force du mot de passe
-			function getPasswordStrength(password) {
-				let score = 0;
-				if (password.length >= 8) score++;
-				if (/[a-z]/.test(password)) score++;
-				if (/[A-Z]/.test(password)) score++;
-				if (/\d/.test(password)) score++;
-				if (/[\W_]/.test(password)) score++;
-				return score;
-			}
-		});
+  const checkPasswordStrength = (password) => {
+      let strength = 0;
+      const patterns = [
+          { pattern: /[a-z]/, weight: 1 }, // lowercase letter
+          { pattern: /[A-Z]/, weight: 1 }, // uppercase letter
+          { pattern: /[0-9]/, weight: 1 }, // number
+          { pattern: /[!@#$%^&*(),.?":{}|<>]/, weight: 1 }, // special character
+          { pattern: /.{8,}/, weight: 2 } // minimum length of 8 characters
+      ];
 
+      patterns.forEach(pattern => {
+          if (pattern.pattern.test(password)) {
+              strength += pattern.weight;
+          }
+      });
+
+      strength = Math.min(strength, 5);
+      updateStrengthBar(strength);
+  };
+
+  const updateStrengthBar = (strength) => {
+      let width = 0;
+      let color = "";
+      let strengthLevel = "";
+
+      if (strength <= 1) {
+          color = "bg-red-500";
+          strengthLevel = "Très faible";
+      } else if (strength === 2) {
+          color = "bg-yellow-500";
+          strengthLevel = "Faible";
+      } else if (strength === 3) {
+          color = "bg-blue-500";
+          strengthLevel = "Moyenne";
+      } else if (strength === 4) {
+          color = "bg-green-500";
+          strengthLevel = "Bonne";
+      } else if (strength >= 5) {
+          color = "bg-green-700";
+          strengthLevel = "Excellente";
+      }
+
+      width = (strength / 5) * 100;
+      strengthBar.style.width = `${width}%`;
+      strengthBar.className = `h-2.5 rounded-full transition-all duration-300 ${color}`;
+      strengthText.textContent = `Force du mot de passe : ${strengthLevel}`;
+  };
+
+  const debounce = (func, delay) => {
+      let timeout;
+      return function(...args) {
+          clearTimeout(timeout);
+          timeout = setTimeout(() => func.apply(this, args), delay);
+      };
+  };
+
+  passwordInput.addEventListener("input", debounce(function() {
+      checkPasswordStrength(passwordInput.value);
+  }, 300));
+});
 
 
 // menu-burger
@@ -81,24 +118,29 @@ if (burgerButton && menuMobile) {
 }
 
 
-// Carousel
-
 document.addEventListener("DOMContentLoaded", function () {
   const carousel = document.querySelector('#carouselExampleCaptions');
+  
+  // Vérification si le carousel existe
+  if (!carousel) {
+    console.error("Carousel not found!");
+    return;
+  }
+
   const items = carousel.querySelectorAll('[data-twe-carousel-item]');
   const indicators = carousel.querySelectorAll('[data-twe-carousel-indicators] button');
   const prevButton = carousel.querySelector('[data-twe-slide="prev"]');
   const nextButton = carousel.querySelector('[data-twe-slide="next"]');
-
-  let currentIndex = 0;
   
+  let currentIndex = 0;
+
   // Fonction pour changer le slide actif
   function changeSlide(index) {
     // Masquer l'élément actuel
     items[currentIndex].classList.add('hidden');
     indicators[currentIndex].classList.remove('opacity-100');
     indicators[currentIndex].classList.add('opacity-20');
-    
+
     // Afficher le nouvel élément
     currentIndex = (index + items.length) % items.length; // pour assurer une boucle circulaire
     items[currentIndex].classList.remove('hidden');
@@ -114,14 +156,18 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   // Gérer le bouton précédent
-  prevButton.addEventListener('click', () => {
-    changeSlide(currentIndex - 1);
-  });
+  if (prevButton) {
+    prevButton.addEventListener('click', () => {
+      changeSlide(currentIndex - 1);
+    });
+  }
 
   // Gérer le bouton suivant
-  nextButton.addEventListener('click', () => {
-    changeSlide(currentIndex + 1);
-  });
+  if (nextButton) {
+    nextButton.addEventListener('click', () => {
+      changeSlide(currentIndex + 1);
+    });
+  }
 
   // Initialiser le carousel
   changeSlide(currentIndex);
@@ -131,6 +177,7 @@ document.addEventListener("DOMContentLoaded", function () {
     changeSlide(currentIndex + 1);
   }, 5000);
 });
+
 
 
 // code js du bouton de recherche

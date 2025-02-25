@@ -19,7 +19,7 @@ final class ProfileController extends AbstractController
         $user = $this->getUser();
 
         // Créer le formulaire
-        $form = $this->createForm(ProfileType::class, $user);
+        $form = $this->createForm(ProfileType::class, $user, ['is_admin' => false]);
 
         // Gérer la soumission du formulaire
         $form->handleRequest($request);

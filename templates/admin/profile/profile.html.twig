@@ -25,14 +25,14 @@
 			<div class="flex flex-col flex-1 overflow-y-auto">
 				<nav class="flex-1 px-2 py-4 bg-gray-800">
 					<a href="{{path('admin_dashboard')}}" class="flex items-center px-4 py-2 text-custom-blue font-bold uppercase">
-    					{{ app.user.firstName }} {{ app.user.lastName }}
-					</a>
+                        {{ app.user.firstName }} {{ app.user.lastName }}
+                    </a>
 
 
 
 
 					<!-- Profil -->
-					<a href="{{path('admin_profile')}}" class="flex items-center px-4 py-2 text-gray-100 hover:bg-gray-700 group">
+					<a href="#" class="flex items-center px-4 py-2 text-gray-100 hover:bg-gray-700 group">
 						<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
 							stroke="currentColor" class="group-hover:hidden h-6 w-6 mr-2">
 							<path stroke-linecap="round" stroke-linejoin="round"
@@ -143,7 +143,7 @@
 							class="absolute top-2 left-4 text-white hidden group-hover:block peer-checked:block h-6 w-6 mr-2">
 							<path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75a4.5 4.5 0 0 1-4.884 4.484c-1.076-.091-2.264.071-2.95.904l-7.152 8.684a2.548 2.548 0 1 1-3.586-3.586l8.684-7.152c.833-.686.995-1.874.904-2.95a4.5 4.5 0 0 1 6.336-4.486l-3.276 3.276a3.004 3.004 0 0 0 2.25 2.25l3.276-3.276c.256.565.398 1.192.398 1.852Z" />
 							<path stroke-linecap="round" stroke-linejoin="round" d="M4.867 19.125h.008v.008h-.008v-.008Z" />
-						  </svg>
+						</svg>
 
 						<!-- Arrow Icon -->
 						<svg xmlns="http://www.w3.org/2000/svg"
@@ -170,11 +170,61 @@
 					
 				</div>
 			</div>
-			<div class="p-4">
-				<h1 class="text-2xl font-bold">Bienvenue sur votre espace d'administration</h1>
-                
-			</div>
+			<div class="max-w-2xl mx-auto bg-white p-6 rounded-lg shadow">
+                <h2 class="text-2xl font-bold mb-4">Modifier votre profil</h2>
+
+                {% for message in app.flashes('success') %}
+                    <div class="p-3 bg-green-500 text-white rounded mb-4">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+
+                {{ form_start(form, {'attr': {'class': 'space-y-4'}}) }}
+                    <div>
+                        {{ form_label(form.first_name) }}
+                        {{ form_widget(form.first_name, {'attr': {'class': 'w-full border p-2 rounded'}}) }}
+                        {{ form_errors(form.first_name) }}
+                    </div>
+
+                    <div>
+                        {{ form_label(form.last_name) }}
+                        {{ form_widget(form.last_name, {'attr': {'class': 'w-full border p-2 rounded'}}) }}
+                        {{ form_errors(form.last_name) }}
+                    </div>
+
+                    <div>
+                        {{ form_label(form.email) }}
+                        {{ form_widget(form.email, {'attr': {'class': 'w-full border p-2 rounded'}}) }}
+                        {{ form_errors(form.email) }}
+                    </div>
+
+                    <div>
+                        {{ form_label(form.plainPassword) }}
+                        {{ form_widget(form.plainPassword, {'attr': {'class': 'w-full border p-2 rounded'}}) }}
+                        {{ form_errors(form.plainPassword) }}
+                    </div>
+                   
+                    <div class="mb-4">
+                    <label for="phone" class="block text-sm font-medium text-gray-700"></label>
+                    {{ form_row(form.phone, {'attr': {'class': 'mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500'}}) }}
+                </div>
+
+                <div class="mb-6">
+                    <label for="address" class="block text-sm font-medium text-gray-700"></label>
+                    {{ form_row(form.address, {'attr': {'class': 'mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500'}}) }}
+                </div>
+
+                    <div class="flex justify-end">
+                            {{ form_row(form.submit, {
+                                'attr': {
+                                    'class': 'bg-custom-blue hover:bg-indigo-700 text-white py-2 px-6 rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-indigo-500'
+                                }
+                            }) }}
+                    </div>
+
+                {{ form_end(form) }}
+
+            </div>
 		</div>
 </div>
-    <script src="https://cdn.tailwindcss.com"></script>
 {% endblock %}

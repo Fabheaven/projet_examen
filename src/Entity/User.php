@@ -59,6 +59,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'json')]
     private array $roles = ['ROLE_USER'];
 
+    #[ORM\Column(type: 'datetime', nullable: true)]
+    private ?\DateTimeInterface $lastLogin = null;
+
     private ?string $plainPassword = null;
 
     #[ORM\Column(type: 'string', length: 255)]
@@ -339,6 +342,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
                 $contact->setUser(null);
             }
         }
+        return $this;
+    }
+
+    public function getLastLogin(): ?\DateTimeInterface
+    {
+        return $this->lastLogin;
+    }
+
+    public function setLastLogin(?\DateTimeInterface $lastLogin): self
+    {
+        $this->lastLogin = $lastLogin;
+        
         return $this;
     }
 }

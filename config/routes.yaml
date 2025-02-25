@@ -6,3 +6,6 @@ controllers:
 app_default:
   path: "/"
   controller: 'App\Controller\IndexController::index'
+admin_user_list:
+    path: /admin/users
+    controller: App\Controller\AdminController::listUsers

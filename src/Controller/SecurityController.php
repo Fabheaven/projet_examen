@@ -15,14 +15,20 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
-use Symfony\Component\Security\Core\Security;
-
 
 class SecurityController extends AbstractController
 {
     #[Route(path: '/login', name: 'app_login')]
-    public function login(AuthenticationUtils $authenticationUtils): Response
+    public function login(AuthenticationUtils $authenticationUtils, EntityManagerInterface $em): Response
     {
+        /** @var \App\Entity\User $user */
+        $user = $this->getUser();
+        
+        if ($user) {
+            $user->setLastLogin(new \DateTime()); 
+            $em->flush(); 
+        }
+
         return $this->render('pages/security/login.html.twig', [
             'last_username' => $authenticationUtils->getLastUsername(),
             'error' => $authenticationUtils->getLastAuthenticationError(),
@@ -115,5 +121,4 @@ class SecurityController extends AbstractController
             'PassForm' => $form->createView(),
         ]);
     }
-
 }

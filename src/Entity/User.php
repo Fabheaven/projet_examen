@@ -87,6 +87,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\ManyToMany(targetEntity: Circuit::class, mappedBy: 'users')]
     private Collection $circuits;  // Relation N,N avec Circuit
 
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    private ?string $temporaryPassword = null;
+
+    #[ORM\Column(type: 'datetime', nullable: true)]
+    private ?\DateTimeInterface $temporaryPasswordExpiration = null;
+
 
     public function __construct()
     {
@@ -354,6 +360,28 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         $this->lastLogin = $lastLogin;
         
+        return $this;
+    }
+
+    public function getTemporaryPassword(): ?string
+    {
+        return $this->temporaryPassword;
+    }
+
+    public function setTemporaryPassword(?string $temporaryPassword): self
+    {
+        $this->temporaryPassword = $temporaryPassword;
+        return $this;
+    }
+
+    public function getTemporaryPasswordExpiration(): ?\DateTimeInterface
+    {
+        return $this->temporaryPasswordExpiration;
+    }
+
+    public function setTemporaryPasswordExpiration(?\DateTimeInterface $temporaryPasswordExpiration): self
+    {
+        $this->temporaryPasswordExpiration = $temporaryPasswordExpiration;
         return $this;
     }
 }

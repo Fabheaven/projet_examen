@@ -69,7 +69,7 @@ class AdminController extends AbstractController
     }
 
     // Créer un utilisateur
-    #[Route('/admin/users/new', name: 'admin_user_new')]
+    #[Route('/admin/users/add', name: 'admin_user_add')]
     #[IsGranted('ROLE_ADMIN')]
     public function createUser(Request $request, UserPasswordHasherInterface $passwordHasher, EntityManagerInterface $em): Response
     {
@@ -88,7 +88,7 @@ class AdminController extends AbstractController
             return $this->redirectToRoute('admin_user_list');
         }
 
-        return $this->render('admin/user/new.html.twig', [
+        return $this->render('admin/user/user_add.html.twig', [
             'form' => $form->createView(),
         ]);
     }

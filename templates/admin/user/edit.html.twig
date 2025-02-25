@@ -141,48 +141,63 @@
 					
 				</div>
 			</div>
-			<div class="flex flex-col flex-1 overflow-y-auto">
-                <div class="container mx-auto p-6">
-                    <h1 class="text-2xl font-bold mb-6">Liste des Utilisateurs</h1>
+			<div class="flex flex-col w-full p-6">
+        <h3 class="text-2xl text-gray-800 dark:text-white text-center">Modifier l'utilisateur</h3>
 
-                    <table class="min-w-full bg-white border border-gray-300">
-                        <thead>
-                            <tr>
-                                <th class="border p-2">Nom</th>
-                                <th class="border p-2">Prénom</th>
-                                <th class="border p-2">Email</th>
-                                <th class="border p-2">Rôle</th>
-                                <th class="border p-2">Inscription</th>
-                                <th class="border p-2">Dernière Connexion</th>
-                                <th class="border p-2">Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {% for user in users %}
-
-                            <tr>
-                                <td class="border p-2">{{ user.firstName }}</td>
-                                <td class="border p-2">{{ user.lastName }}</td>
-                                <td class="border p-2">{{ user.email }}</td>
-                                <td class="border p-2">{{ user.roles|join(', ') }}</td>
-                                <td class="border p-2">{{ user.createdAt|date('d/m/Y') }}</td>
-                                <td class="border p-2">{{ user.lastLogin ? user.lastLogin|date('d/m/Y H:i') : 'Jamais' }}</td>
-                                <td class="border p-2 flex space-x-2">
-                                    <a href="{{ path('admin_user_edit', {id: user.id}) }}" class="bg-blue-500 text-white px-2 py-1 rounded">Modifier</a>
-                                    <form action="{{ path('admin_user_delete', {id: user.id}) }}" method="post" onsubmit="return confirm('Supprimer cet utilisateur ?');">
-                                        <input type="hidden" name="_method" value="POST">
-                                        <button type="submit" class="bg-red-500 text-white px-2 py-1 rounded">Supprimer</button>
-                                    </form>
-                                </td>
-                            </tr>
-                            {% else %}
-                            <tr><td colspan="6">Aucun utilisateur trouvé.</td></tr>
-                            {% endfor %}
-                        </tbody>
-                    </table>
-                </div>
+        <!-- Formulaire -->
+        <form action="{{ path('admin_user_edit', {'id': user.id}) }}" method="POST" class="mt-6 bg-white dark:bg-gray-700 p-8 rounded-lg shadow-md">
+            <div class="mb-4">
+                <label for="firstName" class="block text-sm font-bold text-gray-700 dark:text-white">Prénom</label>
+                <input type="text" id="firstName" name="firstName" value="{{ user.firstName }}" 
+                    class="w-full px-3 py-2 text-sm leading-tight text-gray-700 dark:text-white border rounded shadow appearance-none focus:outline-none focus:shadow-outline">
             </div>
+
+            <div class="mb-4">
+                <label for="lastName" class="block text-sm font-bold text-gray-700 dark:text-white">Nom</label>
+                <input type="text" id="lastName" name="lastName" value="{{ user.lastName }}" 
+                    class="w-full px-3 py-2 text-sm leading-tight text-gray-700 dark:text-white border rounded shadow appearance-none focus:outline-none focus:shadow-outline">
+            </div>
+
+            <div class="mb-4">
+                <label for="email" class="block text-sm font-bold text-gray-700 dark:text-white">E-mail</label>
+                <input type="email" id="email" name="email" value="{{ user.email }}" 
+                    class="w-full px-3 py-2 text-sm leading-tight text-gray-700 dark:text-white border rounded shadow appearance-none focus:outline-none focus:shadow-outline">
+            </div>
+
+            <!-- Rôles -->
+            <div class="mb-4">
+                <label for="roles" class="block text-sm font-bold text-gray-700 dark:text-white">Rôles</label>
+                <select name="roles[]" id="roles" multiple class="w-full px-3 py-2 text-sm leading-tight text-gray-700 dark:text-white border rounded shadow appearance-none focus:outline-none focus:shadow-outline">
+                    <option value="ROLE_ADMIN" {% if 'ROLE_ADMIN' in user.roles %}selected{% endif %}>Administrateur</option>
+                    <option value="ROLE_USER" {% if 'ROLE_USER' in user.roles %}selected{% endif %}>Utilisateur</option>
+                    <option value="ROLE_MANAGER" {% if 'ROLE_MANAGER' in user.roles %}selected{% endif %}>Gestionnaire</option>
+                </select>
+            </div>
+
+            <!-- IsVerified -->
+            <div class="mb-4 flex items-center">
+                <input type="checkbox" id="isVerified" name="isVerified" {% if user.isVerified %}checked{% endif %}
+                    class="mr-2 text-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500 rounded">
+                <label for="isVerified" class="text-sm font-bold text-gray-700 dark:text-white">Utilisateur vérifié</label>
+            </div>
+
+            <!-- Mot de passe -->
+            <div class="mb-4">
+                <label for="password" class="block text-sm font-bold text-gray-700 dark:text-white">Mot de passe</label>
+                <input type="password" id="password" name="password" placeholder="Laisser vide pour ne pas modifier" 
+                    class="w-full px-3 py-2 text-sm leading-tight text-gray-700 dark:text-white border rounded shadow appearance-none focus:outline-none focus:shadow-outline">
+            </div>
+
+            <div class="mb-6 text-center">
+    <button type="submit" 
+        class="w-auto px-4 py-2 font-bold text-white bg-blue-500 rounded-full hover:bg-blue-700 dark:bg-blue-700 dark:text-white dark:hover:bg-blue-900 focus:outline-none focus:shadow-outline">
+        Enregistrer les modifications
+    </button>
+</div>
+
+        </form>
+    </div>
 		</div>
 </div>
-    
+    <script src="https://cdn.tailwindcss.com"></script>
 {% endblock %}

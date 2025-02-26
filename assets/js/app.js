@@ -118,6 +118,7 @@ if (burgerButton && menuMobile) {
 }
 
 
+// carousel
 document.addEventListener("DOMContentLoaded", function () {
   const carousel = document.querySelector('#carouselExampleCaptions');
   
@@ -136,16 +137,22 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Fonction pour changer le slide actif
   function changeSlide(index) {
-    // Masquer l'élément actuel
-    items[currentIndex].classList.add('hidden');
+    // Masquer l'élément actuel avec une animation
+    items[currentIndex].classList.add('page-turn-out');
     indicators[currentIndex].classList.remove('opacity-100');
     indicators[currentIndex].classList.add('opacity-20');
 
-    // Afficher le nouvel élément
+    // Afficher le nouvel élément avec une animation
     currentIndex = (index + items.length) % items.length; // pour assurer une boucle circulaire
-    items[currentIndex].classList.remove('hidden');
+    items[currentIndex].classList.remove('hidden', 'page-turn-out');
+    items[currentIndex].classList.add('page-turn-in');
     indicators[currentIndex].classList.remove('opacity-20');
     indicators[currentIndex].classList.add('opacity-100');
+
+    // Retirer l'animation après qu'elle soit terminée
+    items[currentIndex].addEventListener('animationend', () => {
+      items[currentIndex].classList.remove('page-turn-in');
+    }, { once: true });
   }
 
   // Gérer le clic sur les boutons d'indicateur
@@ -168,6 +175,7 @@ document.addEventListener("DOMContentLoaded", function () {
       changeSlide(currentIndex + 1);
     });
   }
+
 
   // Initialiser le carousel
   changeSlide(currentIndex);
